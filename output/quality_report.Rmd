@@ -1,0 +1,42 @@
+
+---
+title: "Relatório de Qualidade — Painel Estados Brasileiros"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, warning=FALSE, message=FALSE)
+library(dplyr); library(readr); library(knitr)
+miss_var   <- read_csv("output/qr_cobertura_variaveis.csv")
+miss_uf    <- read_csv("output/qr_cobertura_estados.csv")
+miss_year  <- read_csv("output/qr_cobertura_anos.csv")
+desc_stats <- read_csv("output/qr_estatisticas_descritivas.csv")
+outliers   <- read_csv("output/qr_outliers.csv")
+```
+
+## 1. Cobertura por variável
+```{r}
+kable(miss_var, caption = "Missings por variável")
+```
+
+## 2. Cobertura por estado
+```{r}
+kable(miss_uf, caption = "% de anos com dado por estado")
+```
+
+## 3. Cobertura por ano
+```{r}
+kable(miss_year, caption = "Nº de estados com dado por ano")
+```
+
+## 4. Estatísticas descritivas
+```{r}
+kable(desc_stats, caption = "Estatísticas descritivas")
+```
+
+## 5. Outliers potenciais (p1/p99)
+```{r}
+if(nrow(outliers) > 0) kable(outliers) else cat("Nenhum outlier detectado.")
+```
+

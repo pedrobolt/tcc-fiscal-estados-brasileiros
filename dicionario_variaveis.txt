@@ -1,0 +1,66 @@
+=========================================================
+DICIONÁRIO DE VARIÁVEIS — panel_estados_brasil.csv
+Painel: 27 UFs × 23 anos (2002–2024) = 621 obs
+=========================================================
+
+IDENTIFICAÇÃO
+  uf               Sigla da unidade federativa (2 letras)
+  nome             Nome do estado
+  id_ente          Código IBGE do estado (2 dígitos)
+  year             Ano (2002–2024)
+
+DUMMIES ELEITORAIS
+  eleicao_estadual  1 se ano de eleição governatorial (2002,2006,2010,2014,2018,2022)
+  pre_eleicao       1 se ano anterior à eleição estadual
+  pos_eleicao       1 se ano posterior à eleição estadual
+
+VARIÁVEIS FISCAIS BRUTAS — Fonte: STN/SICONFI (R$ mil)
+  dcl              Dívida Consolidada Líquida (RGF Anexo 2, posição de dez)
+  rcl_rgf          Receita Corrente Líquida (RGF Anexo 2, acum. 12 meses)
+  resultado_primario  Resultado Primário (RREO Anexo 6, acum. jan-dez)
+  receitas_primarias  Receitas Primárias (RREO Anexo 6)
+  despesas_primarias  Despesas Primárias (RREO Anexo 6)
+  encargos_divida  Juros e Encargos da Dívida (RREO Anexo 10 ou Anexo 6)
+
+RATIOS FISCAIS (adimensionais)
+  dcl_sobre_rcl        DCL / RCL  (limit. LRF: <= 2,0)
+  primario_sobre_rcl   Resultado Primário / RCL
+  encargos_sobre_rcl   Encargos da Dívida / RCL
+
+PIB ESTADUAL — Fonte: IBGE SIDRA tabela 5938 (Contas Regionais)
+  pib_nominal_mil      PIB a preços correntes (R$ mil)
+  pib_real_mil_2010    PIB real deflacionado pelo IPCA médio anual, base 2010 (R$ mil)
+  pib_real_mil_lag1    Valor defasado t-1 de pib_real_mil_2010
+  crescimento_pib_pct  Taxa de crescimento real do PIB (%)
+  ln_pib_real          Logaritmo natural do PIB real
+
+PREÇOS — Fonte: BCB/SGS série 433
+  ipca_aa              IPCA acumulado no ano (% a.a.)
+  deflator_2010        Índice de preços acum. base dez/2010 = 100
+  deflator_medio_2010  Índice de preços médio anual base 2010 = 100
+
+=========================================================
+NOTAS METODOLÓGICAS
+=========================================================
+1. SICONFI: dados digitais disponíveis de forma mais completa a partir de
+   2013. Anos 2002–2012 podem ter maior proporção de missing values.
+
+2. PIB: IBGE publica Contas Regionais com defasagem de ~2 anos.
+   Anos 2023–2024 terão pib_nominal_mil = NA até publicação oficial.
+
+3. Deflação do PIB: usamos IPCA médio anual (BCB série 433) como proxy
+   do deflator implícito estadual. Para maior precisão, substituir pelo
+   deflator implícito do PIB nacional (IBGE SCN) ou índice estadual.
+
+4. Encargos: quando Anexo 10 indisponível, valor extraído do Anexo 6
+   (pode diferir ligeiramente da definição LRF).
+
+5. RCL: a LRF define RCL como receita corrente menos transferências
+   constitucionais e legais. O valor extraído do RGF Anexo 2 já segue
+   essa definição.
+
+=========================================================
+REFERÊNCIA DA REPLICAÇÃO
+=========================================================
+Abubakar et al. (2025) — ver referência completa na tese.
+Script: R/04_build_panel.R | Exportado por: run_all.R
