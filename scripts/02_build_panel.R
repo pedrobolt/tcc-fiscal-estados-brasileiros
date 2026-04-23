@@ -21,10 +21,10 @@ tetos_df <- read_csv("data/raw/tetos_lei9496.csv", show_col_types = FALSE)
 source("R/04_build_panel.R")
 
 # build_panel_final.R adiciona lags, interações e yvar inicial
-source("build_panel_final.R")
+source("scripts/build_panel_final.R")
 
 # fix_yvar.R recalcula yvar como desvio % do trend HP em log(pib_real_mil)
-source("fix_yvar.R")
+source("scripts/fix_yvar.R")
 
 # --- Copia resultado final para data/processed/ ------------------------------
 if (file.exists("output/panel_final_v5.csv")) {
