@@ -1,6 +1,7 @@
 =========================================================
-DICIONÁRIO DE VARIÁVEIS — panel_estados_brasil.csv
-Painel: 27 UFs × 23 anos (2002–2024) = 621 obs
+DICIONÁRIO DE VARIÁVEIS — panel_final_v5.csv
+Painel: 25 UFs × 23 anos (2002–2024) = 575 obs
+(excluindo AP e TO — sem contrato Lei 9.496/97)
 =========================================================
 
 IDENTIFICAÇÃO
@@ -39,6 +40,25 @@ PREÇOS — Fonte: BCB/SGS série 433
   deflator_2010        Índice de preços acum. base dez/2010 = 100
   deflator_medio_2010  Índice de preços médio anual base 2010 = 100
 
+VARIÁVEIS DE IDENTIFICAÇÃO — Lei 9.496/97
+  teto             Teto de comprometimento da RCL (12, 13 ou 15%)
+                   Fonte: STN/DOU contratos 1997-2001
+
+VARIÁVEIS DERIVADAS PARA ESTIMAÇÃO
+  d_lag1           DCL/RCL defasada 1 período (d_{i,t-1})
+  d_lag2           DCL/RCL defasada 2 períodos (d_{i,t-2}) — instrumento 2SLS
+  d_lag1_teto      Interação d_lag1 × teto — variável endógena Modelo I
+  d_lag2_teto      Interação d_lag2 × teto — instrumento 2SLS
+  primario_teto    Interação primario_sobre_rcl_ext × teto
+  yvar             Hiato do produto — desvio log(PIB) do trend HP (lambda=100)
+  fonte_dcl        Fonte da DCL: "SISTN" (2002-2014) ou "SICONFI" (2015-2024)
+  d_quebra_serie   Dummy de quebra metodológica SISTN→SICONFI (=1 para 2015+)
+
+VARIÁVEIS ESTENDIDAS (fusão SISTN + SICONFI)
+  dcl_sobre_rcl_ext      DCL/RCL — série completa 2002-2024
+  primario_sobre_rcl_ext Primário/RCL — série completa (FINBRA+SICONFI)
+  encargos_sobre_rcl_ext Encargos/RCL — série completa
+
 =========================================================
 NOTAS METODOLÓGICAS
 =========================================================
@@ -59,8 +79,16 @@ NOTAS METODOLÓGICAS
    constitucionais e legais. O valor extraído do RGF Anexo 2 já segue
    essa definição.
 
+6. Tetos Lei 9.496/97: 12% = AC, AM, CE, PE, RR; 13% = BA, DF, ES, MA,
+   MG, PB, PI, PR, RJ, RN, RS, SC, SE, SP; 15% = AL, GO, MS, MT, PA, RO.
+   AP e TO excluídos por não terem contrato de refinanciamento com a União.
+
+7. Quebra de série SISTN→SICONFI: a variável d_quebra_serie captura
+   possível descontinuidade metodológica em 2015. Testes de robustez
+   confirmaram estabilidade dos resultados.
+
 =========================================================
 REFERÊNCIA DA REPLICAÇÃO
 =========================================================
 Abubakar et al. (2025) — ver referência completa na tese.
-Script: R/04_build_panel.R | Exportado por: run_all.R
+Script: scripts/02_build_panel.R | Exportado por: run_all.R
