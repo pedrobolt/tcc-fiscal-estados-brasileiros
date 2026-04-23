@@ -1,81 +1,51 @@
 # =============================================================================
-# run_all.R
-# Script mestre — executa toda a pipeline de coleta e construção do painel
+# run_all.R — Pipeline completo do TCC
+# Sustentabilidade Fiscal e Regras de Endividamento: Painel de Estados (2002-2024)
 #
-# USO:
-#   Rscript run_all.R                  # executa tudo
-#   Rscript run_all.R --force-refresh  # ignora cache e re-baixa tudo
-#
-# SAÍDAS:
-#   output/panel_estados_brasil.csv    — painel final (27 UFs × 23 anos)
-#   output/qr_cobertura_*.csv          — relatórios de qualidade
-#   output/quality_report.html         — relatório HTML (requer rmarkdown)
-#
-# TEMPO ESTIMADO: ~45–90 min (API SICONFI é o gargalo: 621 req × 3 endpoints)
+# Execução: Rscript run_all.R
+# Tempo estimado: ~20-30 min (coleta de dados + 2x bootstrap B=500)
 # =============================================================================
 
-# Muda working directory para a pasta do projeto (necessário se Rscript)
-script_dir <- tryCatch(
-  dirname(normalizePath(sys.frame(1)$ofile)),
-  error = function(e) getwd()
-)
-setwd(script_dir)
-
-args <- commandArgs(trailingOnly = TRUE)
-FORCE_REFRESH <- "--force-refresh" %in% args
-
-cat("=============================================================\n")
-cat(" Painel Fiscal Estadual Brasileiro — Pipeline de Coleta\n")
-cat(" Período: 2002–2024 | N = 27 estados\n")
-cat(sprintf(" Modo: %s\n", if (FORCE_REFRESH) "FORÇAR REFRESH" else "usar cache"))
-cat(sprintf(" Início: %s\n", format(Sys.time(), "%Y-%m-%d %H:%M:%S")))
-cat("=============================================================\n\n")
-
-# ---- 0. Setup ----------------------------------------------------------------
-source("R/00_setup.R")
-
-# ---- 1. SICONFI — dados fiscais (etapa mais longa) --------------------------
-cat("\n[1/5] SICONFI (DCL, RCL, Resultado Primário, Encargos)...\n")
-SOURCED_SICONFI <- FALSE
-source("R/01_siconfi.R")
-siconfi_data <- collect_siconfi(force_refresh = FORCE_REFRESH)
-
-# ---- 2. IBGE SIDRA — PIB estadual -------------------------------------------
-cat("\n[2/5] IBGE SIDRA (PIB nominal por estado)...\n")
-SOURCED_IBGE <- FALSE
-source("R/02_ibge_gdp.R")
-pib_data <- collect_ibge_gdp()
-
-# ---- 3. BCB/SGS — IPCA -------------------------------------------------------
-cat("\n[3/5] BCB/SGS (IPCA mensal → anual)...\n")
-SOURCED_BCB <- FALSE
-source("R/03_bcb_ipca.R")
-ipca_data <- collect_bcb_ipca()
-
-# ---- 4. Constrói painel ------------------------------------------------------
-cat("\n[4/5] Construindo painel balanceado...\n")
-SOURCED_PANEL <- FALSE
-source("R/04_build_panel.R")
-panel <- build_panel()
-
-# ---- 5. Relatório de qualidade -----------------------------------------------
-cat("\n[5/5] Gerando relatório de qualidade...\n")
-SOURCED_QR <- FALSE
-source("R/05_quality_report.R")
-qr <- generate_quality_report()
-
-# ---- Sumário final -----------------------------------------------------------
-cat("\n=============================================================\n")
-cat(" PIPELINE CONCLUÍDA\n")
-cat(sprintf(" Término: %s\n", format(Sys.time(), "%Y-%m-%d %H:%M:%S")))
-cat(sprintf(" Painel : %d obs × %d variáveis\n", nrow(panel), ncol(panel)))
-cat(sprintf(" Output : %s\n", normalizePath("output/")))
-cat("=============================================================\n")
-
-# Abre painel no RStudio se disponível
-if (interactive() && requireNamespace("utils", quietly = TRUE)) {
-  message("\nMostrando primeiras linhas do painel:")
-  print(head(panel))
-  message("\nVariáveis do painel:")
-  glimpse(panel)
+pkgs <- c("dplyr", "tidyr", "readr", "purrr", "stringr",
+          "fixest", "plm", "mFilter",
+          "httr", "jsonlite", "glue",
+          "sidrar", "rbcb", "lubridate",
+          "kableExtra", "tibble")
+to_install <- pkgs[!pkgs %in% rownames(installed.packages())]
+if (length(to_install) > 0) {
+  message("Instalando pacotes: ", paste(to_install, collapse = ", "))
+  install.packages(to_install, repos = "https://cloud.r-project.org")
 }
+
+dirs <- c("data/raw/siconfi", "data/raw/ibge", "data/raw/bcb",
+          "data/processed", "output/tables", "output/figures", "docs")
+for (d in dirs) dir.create(d, recursive = TRUE, showWarnings = FALSE)
+
+cat("=================================================================\n")
+cat(" TCC — Sustentabilidade Fiscal e Regras de Endividamento\n")
+cat(" Painel de Estados Brasileiros (2002-2024)\n")
+cat("=================================================================\n\n")
+
+cat("[1/6] Coletando dados (SICONFI, IBGE, BCB)...\n")
+source("scripts/01_collect_data.R")
+
+cat("\n[2/6] Construindo painel analítico...\n")
+source("scripts/02_build_panel.R")
+
+cat("\n[3/6] Estimando Modelo I (OLS-FE + 2SLS)...\n")
+source("scripts/03_model1_2sls.R")
+
+cat("\n[4/6] Estimando Modelo II (LSDVC + FE+DK) — bootstrap B=500...\n")
+source("scripts/04_model2_lsdvc.R")
+
+cat("\n[5/6] Verificações de robustez + testes de raiz unitária...\n")
+source("scripts/05_robustness.R")
+
+cat("\n[6/6] Gerando tabela de resultados...\n")
+source("scripts/06_tables.R")
+
+cat("\n=================================================================\n")
+cat(" CONCLUÍDO\n")
+cat(" Tabela principal : output/tables/tabela_final.html\n")
+cat(" Painel analítico : data/processed/panel_final_v5.csv\n")
+cat("=================================================================\n")
