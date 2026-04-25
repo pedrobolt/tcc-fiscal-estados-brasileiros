@@ -1,39 +1,41 @@
 \begin{table}[!h]
 \centering
-\caption{\label{tab:tab:resultados6}Sustentabilidade Fiscal e Regras de Endividamento --- Painel de Estados Brasileiros (2002--2024)}
+\caption{\label{tab:tab:resultados7}Sustentabilidade Fiscal e Regras de Endividamento --- Painel de Estados Brasileiros (2002--2024)}
 \centering
 \resizebox{\ifdim\width>\linewidth\linewidth\else\width\fi}{!}{
 \begin{threeparttable}
-\begin{tabular}[t]{lllllll}
+\begin{tabular}[t]{llllllll}
 \toprule
-\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Modelos Principais} & \multicolumn{2}{c}{Robustez} \\
-\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-7}
-\multicolumn{1}{c}{ } & \multicolumn{2}{c}{Dep.: Primario/RCL} & \multicolumn{3}{c}{Dep.: DCL/RCL} & \multicolumn{1}{c}{Dep.: Primario/RCL} \\
-\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-6} \cmidrule(l{3pt}r{3pt}){7-7}
-  & I-A: MQO-EF & I-B: 2SLS & II-A: LSDVC & II-B: EF+DK & Rob1: LSDVC-yvar & Rob2: 2SLS-noCOV\\
+\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Modelos Principais} & \multicolumn{3}{c}{Verificacoes de Robustez} \\
+\cmidrule(l{3pt}r{3pt}){2-5} \cmidrule(l{3pt}r{3pt}){6-8}
+\multicolumn{1}{c}{ } & \multicolumn{2}{c}{Dep.: Primario/RCL} & \multicolumn{3}{c}{Dep.: DCL/RCL} & \multicolumn{2}{c}{Dep.: Primario/RCL} \\
+\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-6} \cmidrule(l{3pt}r{3pt}){7-8}
+  & I-A: MQO-EF & I-B: 2SLS & II-A: LSDVC & II-B: EF+DK & Rob1: LSDVC-yvar & Rob2: 2SLS-noCOV & Rob3: Binding\\
 \midrule
-DCL/RCL (t-1) & 0.366*** & 0.711*** & 0.988*** & 0.862*** & 0.965*** & 0.751***\\
- & (0.110) & (0.170) & (0.020) & (0.034) & (0.025) & (0.170)\\
-DCL/RCL (t-1) × Teto & -0.024*** & -0.046*** &  &  &  & -0.048***\\
- & (0.008) & (0.012) &  &  &  & (0.012)\\
-Hiato do produto & -0.071 & 0.002 &  &  & -0.208 & -0.011\\
- & (0.080) & (0.091) &  &  & (0.154) & (0.098)\\
-Primário/RCL &  &  & -0.937*** & -0.746*** & -0.942*** & \\
- &  &  & (0.105) & (0.129) & (0.135) & \\
-Crescimento PIB (\%) &  &  & -0.003** & -0.003** &  & \\
- &  &  & (0.001) & (0.001) &  & \\
-Obs. & 487 & 462 & 488 & 487 & 512 & 412\\
-R² within & 0.058 & — & — & 0.819 & — & —\\
-F-stat 1º estágio & — & 845 / 973 & — & — & — & 663 / 766\\
-Wu-Hausman (p) & — & 0.0001 & — & — & — & 0.0000\\
-Bootstrap B=500 & — & — & Sim & — & Sim & —\\
-Correção Nickell & — & — & Sim & — & Sim & —\\
-EF Estado & Sim & Sim & Sim & Sim & Sim & Sim\\
-EF Ano & Sim & Sim & Não & Sim & Não & Sim\\
+DCL/RCL (t-1) & 0.366*** & 0.711*** & 0.988*** & 0.862*** & 0.965*** & 0.751*** & 0.732***\\
+ & (0.110) & (0.170) & (0.020) & (0.034) & (0.025) & (0.170) & (0.171)\\
+DCL/RCL (t-1) × Teto & -0.024*** & -0.046*** &  &  &  & -0.048*** & -0.047***\\
+ & (0.008) & (0.012) &  &  &  & (0.012) & (0.012)\\
+DCL/RCL × Teto × Binding &  &  &  &  &  &  & -0.001\\
+ &  &  &  &  &  &  & (0.000)\\
+Hiato do produto & -0.071 & 0.002 &  &  & -0.208 & -0.011 & 0.003\\
+ & (0.080) & (0.091) &  &  & (0.154) & (0.098) & (0.092)\\
+Primário/RCL &  &  & -0.937*** & -0.746*** & -0.942*** &  & \\
+ &  &  & (0.105) & (0.129) & (0.135) &  & \\
+Crescimento PIB (\%) &  &  & -0.003** & -0.003** &  &  & \\
+ &  &  & (0.001) & (0.001) &  &  & \\
+Obs. & 487 & 462 & 488 & 487 & 512 & 412 & 462\\
+R² within & 0.058 & — & — & 0.819 & — & — & —\\
+F-stat 1º estágio & — & 845/973 & — & — & — & 663/766 & 562/648/4240\\
+Wu-Hausman (p) & — & 0.0001 & — & — & — & 0.0000 & 0.0004\\
+Bootstrap B=500 & — & — & Sim & — & Sim & — & —\\
+Correção Nickell & — & — & Sim & — & Sim & — & —\\
+EF Estado & Sim & Sim & Sim & Sim & Sim & Sim & Sim\\
+EF Ano & Sim & Sim & Não & Sim & Não & Sim & Sim\\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[para]
-\item Erros padrão clusterizados por estado entre parênteses (Modelos I). Bootstrap com B=500 replicações (Modelos II LSDVC). System-GMM two-way FE inviável com N=25 — substituído por LSDVC (Bruno, 2005). Amostra: 25 estados brasileiros (excl. AP e TO), 2002–2024. * p<0,1  ** p<0,05  *** p<0,01.
+\item Erros padrão clusterizados por estado entre parênteses (Modelos I e Rob). Bootstrap com B=500 replicações (Modelos II LSDVC). System-GMM two-way FE inviável com N=25 — substituído por LSDVC (Bruno, 2005). Rob3: binding=1 se encargos/(teto/100)>0,70; inclui tripla interacao d×teto×binding. Amostra: 25 estados brasileiros (excl. AP e TO), 2002–2024. * p<0,1  ** p<0,05  *** p<0,01.
 \end{tablenotes}
 \end{threeparttable}}
 \end{table}
