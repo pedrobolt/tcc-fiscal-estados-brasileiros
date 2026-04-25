@@ -41,11 +41,15 @@ source("scripts/04_model2_lsdvc.R")
 cat("\n[5/6] Verificações de robustez + testes de raiz unitária...\n")
 source("scripts/05_robustness.R")
 
-cat("\n[6/6] Gerando tabela de resultados...\n")
+cat("\n[6/7] Gerando tabela de resultados...\n")
 source("scripts/06_tables.R")
+
+cat("\n[7/7] Gerando figuras AER-style...\n")
+source("scripts/07_figures.R")
 
 cat("\n=================================================================\n")
 cat(" CONCLUÍDO\n")
 cat(" Tabela principal : output/tables/tabela_final.html\n")
+cat(" Figuras          : output/figures/fig{1..4}.{pdf,png}\n")
 cat(" Painel analítico : data/processed/panel_final_v5.csv\n")
 cat("=================================================================\n")
