@@ -76,28 +76,30 @@
       </tr>
     </thead>
     <tbody>
+      <!-- DCL/RCL (t-1) -->
       <tr class="coef">
         <td>DCL/RCL (<em>t</em>&minus;1)</td>
-        <td>0.366<sup class="st">***</sup></td>
-        <td>0.711<sup class="st">***</sup></td>
-        <td>0.988<sup class="st">***</sup></td>
-        <td>0.862<sup class="st">***</sup></td>
-        <td>0.965<sup class="st">***</sup></td>
-        <td>0.751<sup class="st">***</sup></td>
-        <td>0.732<sup class="st">***</sup></td>
+        <td>0.324<sup class="st">***</sup></td>
+        <td>0.653<sup class="st">***</sup></td>
+        <td>0.984<sup class="st">***</sup></td>
+        <td>0.864<sup class="st">***</sup></td>
+        <td>0.964<sup class="st">***</sup></td>
+        <td>0.692<sup class="st">***</sup></td>
+        <td>0.670<sup class="st">***</sup></td>
       </tr>
       <tr class="se">
         <td></td>
-        <td>(0.110)</td><td>(0.170)</td><td>(0.020)</td>
-        <td>(0.034)</td><td>(0.025)</td><td>(0.170)</td><td>(0.171)</td>
+        <td>(0.111)</td><td>(0.170)</td><td>(0.018)</td>
+        <td>(0.031)</td><td>(0.023)</td><td>(0.169)</td><td>(0.170)</td>
       </tr>
+      <!-- DCL/RCL (t-1) x Teto -->
       <tr class="coef">
         <td>DCL/RCL (<em>t</em>&minus;1) &times; Teto</td>
-        <td>&minus;0.024<sup class="st">***</sup></td>
-        <td>&minus;0.046<sup class="st">***</sup></td>
+        <td>&minus;0.021<sup class="st">**</sup></td>
+        <td>&minus;0.041<sup class="st">***</sup></td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>&minus;0.048<sup class="st">***</sup></td>
-        <td>&minus;0.047<sup class="st">***</sup></td>
+        <td>&minus;0.043<sup class="st">***</sup></td>
+        <td>&minus;0.042<sup class="st">***</sup></td>
       </tr>
       <tr class="se">
         <td></td>
@@ -105,6 +107,7 @@
         <td></td><td></td><td></td>
         <td>(0.012)</td><td>(0.012)</td>
       </tr>
+      <!-- DCL/RCL x Teto x Binding -->
       <tr class="coef">
         <td>DCL/RCL &times; Teto &times; Binding</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td>
@@ -116,31 +119,37 @@
         <td></td><td></td><td></td><td></td><td></td><td></td>
         <td>(0.000)</td>
       </tr>
+      <!-- Hiato do produto -->
       <tr class="coef">
         <td>Hiato do produto</td>
-        <td>&minus;0.071</td><td>0.002</td>
+        <td>&minus;0.075</td>
+        <td>0.003</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>&minus;0.208</td><td>&minus;0.011</td><td>0.003</td>
+        <td>&minus;0.170</td>
+        <td>&minus;0.013</td>
+        <td>0.004</td>
       </tr>
       <tr class="se">
         <td></td>
-        <td>(0.080)</td><td>(0.091)</td>
+        <td>(0.082)</td><td>(0.092)</td>
         <td></td><td></td>
-        <td>(0.154)</td><td>(0.098)</td><td>(0.092)</td>
+        <td>(0.139)</td><td>(0.106)</td><td>(0.093)</td>
       </tr>
+      <!-- Primario/RCL -->
       <tr class="coef">
         <td>Prim&aacute;rio/RCL</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>&minus;0.937<sup class="st">***</sup></td>
-        <td>&minus;0.746<sup class="st">***</sup></td>
-        <td>&minus;0.942<sup class="st">***</sup></td>
+        <td>&minus;0.933<sup class="st">***</sup></td>
+        <td>&minus;0.744<sup class="st">***</sup></td>
+        <td>&minus;0.934<sup class="st">***</sup></td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
       </tr>
       <tr class="se">
         <td></td><td></td><td></td>
-        <td>(0.105)</td><td>(0.129)</td><td>(0.135)</td>
+        <td>(0.101)</td><td>(0.128)</td><td>(0.132)</td>
         <td></td><td></td>
       </tr>
+      <!-- Crescimento PIB -->
       <tr class="coef">
         <td>Crescimento PIB (%)</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
@@ -153,45 +162,44 @@
         <td>(0.001)</td><td>(0.001)</td>
         <td></td><td></td><td></td>
       </tr>
+      <!-- GOF -->
       <tr class="gof gofsep">
         <td>Observa&ccedil;&otilde;es</td>
-        <td>487</td><td>462</td><td>488</td><td>487</td><td>512</td><td>412</td><td>462</td>
+        <td>512</td><td>487</td><td>513</td><td>512</td><td>537</td><td>437</td><td>487</td>
       </tr>
       <tr class="gof">
         <td>R<sup>2</sup> <em>within</em></td>
-        <td>0.058</td>
+        <td>0.055</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>0.819</td>
+        <td>0.824</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td>
       </tr>
       <tr class="gof">
         <td>F-stat 1&ordm; est&aacute;gio</td>
         <td class="dash">&mdash;</td>
-        <td>845&thinsp;/&thinsp;973</td>
+        <td>918&thinsp;/&thinsp;1070</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>663&thinsp;/&thinsp;766</td>
-        <td>562&thinsp;/&thinsp;648&thinsp;/&thinsp;4240</td>
+        <td>761&thinsp;/&thinsp;893</td>
+        <td>611&thinsp;/&thinsp;712&thinsp;/&thinsp;4588</td>
       </tr>
       <tr class="gof">
         <td>Wu&ndash;Hausman (<em>p</em>)</td>
         <td class="dash">&mdash;</td>
         <td>0.0001</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>0.0000</td><td>0.0004</td>
+        <td>0.0000</td><td>0.0002</td>
       </tr>
       <tr class="gof">
         <td>Bootstrap <em>B</em>&thinsp;=&thinsp;500</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>Sim</td>
-        <td class="dash">&mdash;</td>
+        <td>Sim</td><td class="dash">&mdash;</td>
         <td>Sim</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
       </tr>
       <tr class="gof">
         <td>Corre&ccedil;&atilde;o Nickell</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
-        <td>Sim</td>
-        <td class="dash">&mdash;</td>
+        <td>Sim</td><td class="dash">&mdash;</td>
         <td>Sim</td>
         <td class="dash">&mdash;</td><td class="dash">&mdash;</td>
       </tr>
@@ -215,6 +223,7 @@
       Rob.&thinsp;2 exclui os anos de pandemia (2020&ndash;2021).
       Rob.&thinsp;3: <em>binding</em>&thinsp;=&thinsp;1 se encargos/(teto/100)&thinsp;&gt;&thinsp;0,70;
       inclui intera&ccedil;&atilde;o tripla <em>d</em>&thinsp;&times;&thinsp;teto&thinsp;&times;&thinsp;binding.
+      PIB estadual: IBGE/SIDRA tabela&nbsp;5938, 2002&ndash;2023.
       Amostra: 25 estados brasileiros (excl.&nbsp;AP e TO), 2002&ndash;2024.&ensp;
       <sup>*</sup>&thinsp;<em>p</em>&nbsp;&lt;&nbsp;0,10;&ensp;
       <sup>**</sup>&thinsp;<em>p</em>&nbsp;&lt;&nbsp;0,05;&ensp;

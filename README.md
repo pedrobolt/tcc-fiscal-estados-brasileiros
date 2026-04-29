@@ -30,10 +30,10 @@ exógena na intensidade da restrição fiscal.
 
 | Coeficiente | Valor | Interpretação |
 |---|---|---|
-| β₁ (DCL/RCL, 2SLS) | +0.711*** | Condição de Bohn satisfeita — dívida é sustentável |
-| β₂ (DCL×Teto, 2SLS) | −0.046*** | Teto mais alto atenua o ajuste fiscal |
-| θ (Primário/RCL, LSDVC) | −0.937*** | Superávit reduz dívida em ~0.94pp por 1pp |
-| ρ (DCL lag, LSDVC) | +0.988*** | Alta persistência da dívida estadual |
+| β₁ (DCL/RCL, 2SLS) | +0.653*** | Condição de Bohn satisfeita — dívida é sustentável |
+| β₂ (DCL×Teto, 2SLS) | −0.041*** | Teto mais alto atenua o ajuste fiscal |
+| θ (Primário/RCL, LSDVC) | −0.933*** | Superávit reduz dívida em ~0.93pp por 1pp |
+| ρ (DCL lag, LSDVC) | +0.984*** | Alta persistência da dívida estadual |
 
 Todos os resultados são robustos à exclusão do período COVID (2020–2021)
 e à substituição do crescimento do PIB pelo hiato do produto.
@@ -45,7 +45,7 @@ e à substituição do crescimento do PIB pelo hiato do produto.
 ```
 tcc/
 ├── output/
-│   ├── panel_final_v5.csv        # Painel completo (575 obs × 45 vars)
+│   ├── panel_final_v5.csv        # Painel completo (575 obs × 45 vars, PIB 2002–2023)
 │   ├── tabela_final.html         # Tabela de resultados (6 colunas)
 │   ├── tabela_final.tex          # Versão LaTeX
 │   └── tabela_final.txt          # Versão texto
@@ -63,7 +63,7 @@ tcc/
 | DCL, RCL, encargos | STN/SICONFI (API) | 2015–2024 |
 | DCL, RCL histórica | STN/SISTN | 2002–2014 |
 | Resultado primário histórico | FINBRA (manual) | 2002–2014 |
-| PIB estadual real | IBGE/SCN (SIDRA) | 2002–2022 |
+| PIB estadual real | IBGE/SCN (SIDRA) | 2002–2023 |
 | Tetos contratuais | STN/DOU (manual) | Fixo (1997) |
 
 25 estados — excluindo AP e TO (sem contrato Lei 9.496/97).
