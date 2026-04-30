@@ -8,6 +8,8 @@ para o contexto das finanças estaduais brasileiras.
 > The experience of sub-Sahara African countries.*
 > Journal of Policy Modeling, 47, 166–186.
 
+Metodologia completa: [`docs/metodologia_tcc_v8.pdf`](docs/metodologia_tcc_v8.pdf)
+
 ---
 
 ## Sobre o projeto
@@ -44,13 +46,39 @@ e à substituição do crescimento do PIB pelo hiato do produto.
 
 ```
 tcc/
+├── data/
+│   ├── raw/                          # SICONFI, IBGE, BCB (coletados via API)
+│   └── processed/
+│       ├── panel_final_v5.csv        # Painel completo (575 obs × 45 vars)
+│       └── panel_slim.csv            # Painel analítico (575 obs × 13 vars)
+├── scripts/
+│   ├── 01_collect_data.R             # Coleta: SICONFI, IBGE/SIDRA, BCB
+│   ├── 02_build_panel.R              # Construção do painel analítico
+│   ├── 03_model1_2sls.R              # Modelo I: MQO-EF + 2SLS
+│   ├── 04_model2_lsdvc.R             # Modelo II: LSDVC + EF+DK
+│   ├── 05_robustness.R               # Robustez: sem COVID, yvar
+│   ├── 05b_robustness_binding.R      # Robustez: binding (Rob. 3)
+│   ├── 06_tables.R                   # Tabela principal de resultados
+│   ├── 07_figures.R                  # Figuras 1–4 (AER-style)
+│   ├── 08_descriptive_stats.R        # Tabela 2: estatísticas descritivas
+│   └── 09_pre_trend.R                # Figuras 5–6: análise de pré-tendência
 ├── output/
-│   ├── panel_final_v5.csv        # Painel completo (575 obs × 45 vars, PIB 2002–2023)
-│   ├── tabela_final.html         # Tabela de resultados (6 colunas)
-│   ├── tabela_final.tex          # Versão LaTeX
-│   └── tabela_final.txt          # Versão texto
-├── collect_*.R                   # Scripts de coleta de dados
-├── robustness.R                  # Verificações de robustez
+│   ├── tables/
+│   │   ├── tabela_final.html         # Tabela 1 — resultados (7 colunas)
+│   │   ├── tabela_final.tex          # Versão LaTeX
+│   │   ├── tabela_final.txt          # Versão texto
+│   │   ├── estatisticas_descritivas.html  # Tabela 2 — descritivas
+│   │   └── estatisticas_descritivas.tex
+│   └── figures/
+│       ├── fig1_dcl_por_teto.{pdf,png}
+│       ├── fig2_coef_mqo_vs_2sls.{pdf,png}
+│       ├── fig3_primario_por_teto.{pdf,png}
+│       ├── fig4_forest_robustez.{pdf,png}
+│       ├── fig5_pre_trend.{pdf,png}
+│       └── fig6_event_study.{pdf,png}
+├── docs/
+│   └── metodologia_tcc_v8.pdf        # Metodologia completa
+├── run_all.R                         # Pipeline completo (9 etapas)
 └── README.md
 ```
 
@@ -88,12 +116,31 @@ System-GMM two-way FE inviável com N=25 (Arellano & Bond, 1991)
 
 ---
 
+## Análises complementares
+
+**Tabela 2 — Estatísticas descritivas** (`scripts/08_descriptive_stats.R`)
+
+Três painéis: (A) amostra completa, (B) por grupo de teto (12/13/15%) com
+testes t de Welch entre grupos, (C) matriz de correlação das variáveis do modelo.
+
+**Figuras 5–6 — Análise de pré-tendência** (`scripts/09_pre_trend.R`)
+
+- Figura 5: DCL/RCL média por grupo de teto com bandas de confiança (2002–2008)
+- Figura 6: Event study completo (2002–2024), interação `year × teto`, referência em 2002
+
+A identificação 2SLS baseia-se em variação cross-sectional do teto (fixo desde 1997),
+não em variação temporal. O teste de pré-tendência é evidência adicional de comparabilidade
+entre grupos antes do período de ajuste.
+
+---
+
 ## Pacotes R
 
 ```r
 install.packages(c("fixest", "plm", "xtlvr2",
                    "mFilter", "modelsummary",
-                   "tidyverse", "sidrar", "rbcb"))
+                   "tidyverse", "sidrar", "rbcb",
+                   "ggplot2", "patchwork", "scales"))
 ```
 
 ---
