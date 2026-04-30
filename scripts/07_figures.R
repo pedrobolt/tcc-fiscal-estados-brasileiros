@@ -12,7 +12,7 @@ suppressPackageStartupMessages(lapply(pkgs, library, character.only = TRUE))
 
 dir.create("output/figures", recursive = TRUE, showWarnings = FALSE)
 
-panel <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE)
+panel <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE)
 
 # --- Tema base AER/QJE -------------------------------------------------------
 theme_aer <- theme_minimal(base_family = "serif", base_size = 11) +
@@ -88,8 +88,8 @@ save_fig(fig1, "fig1_dcl_por_teto")
 coef_data <- tibble(
   coef   = rep(c("beta1", "beta2"), 2),
   modelo = rep(c("MQO-EF", "2SLS"), each = 2),
-  est    = c(0.366, -0.024, 0.711, -0.046),
-  se     = c(0.110,  0.008, 0.170,  0.012)
+  est    = c(0.324, -0.021, 0.653, -0.041),
+  se     = c(0.111,  0.008, 0.170,  0.012)
 ) %>%
   mutate(
     lo95 = est - 1.96 * se,
@@ -174,8 +174,8 @@ save_fig(fig3, "fig3_primario_por_teto")
 forest_data <- tibble(
   spec   = rep(c("2SLS\n(baseline)", "Rob2\n(sem COVID)", "Rob3\n(binding)"), 2),
   coef   = rep(c("beta1", "beta2"), each = 3),
-  est    = c(0.711, 0.751, 0.732,   -0.046, -0.048, -0.047),
-  se     = c(0.170, 0.170, 0.171,    0.012,  0.012,  0.012)
+  est    = c(0.653, 0.692, 0.670,   -0.041, -0.043, -0.042),
+  se     = c(0.170, 0.169, 0.170,    0.012,  0.012,  0.012)
 ) %>%
   mutate(
     lo95 = est - 1.96 * se,

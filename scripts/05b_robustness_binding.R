@@ -10,7 +10,7 @@
 #   encargos_sobre_rcl_ext: fracao decimal (ex: 0.09 = 9% da RCL)
 #   teto: pontos percentuais (12, 13 ou 15) convertido para fracao: teto/100
 #
-# Entrada: data/processed/panel_final_v5.csv
+# Entrada: data/processed/panel_slim.csv
 # =============================================================================
 
 pkgs <- c("dplyr", "readr", "fixest")
@@ -19,7 +19,7 @@ if (length(to_install) > 0)
   install.packages(to_install, repos = "https://cloud.r-project.org")
 suppressPackageStartupMessages(lapply(pkgs, library, character.only = TRUE))
 
-panel <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   arrange(uf, year)
 
 # =============================================================================

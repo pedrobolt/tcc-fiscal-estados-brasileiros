@@ -3,7 +3,7 @@
 # Modelo I — Função de Reação Fiscal (Bohn 1998)
 #   I-A: OLS com efeitos fixos (benchmark)
 #   I-B: 2SLS — instrumenta d_lag1 e d_lag1_teto com d_lag2 e d_lag2_teto
-# Entrada: data/processed/panel_final_v5.csv
+# Entrada: data/processed/panel_slim.csv
 # Resultados: β₁=0.711*** (Bohn condition), β₂=−0.046*** (teto atenua ajuste)
 # =============================================================================
 
@@ -13,7 +13,7 @@ if (length(to_install) > 0)
   install.packages(to_install, repos = "https://cloud.r-project.org")
 suppressPackageStartupMessages(lapply(pkgs, library, character.only = TRUE))
 
-panel <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   arrange(uf, year)
 
 cat("Panel:", nrow(panel), "obs |", n_distinct(panel$uf), "estados ×",

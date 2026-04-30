@@ -3,7 +3,7 @@
 # Tabela de resultados publicável — 7 colunas (AER style)
 # Cols: I-A OLS-FE | I-B 2SLS | II-A LSDVC | II-B EF+DK |
 #       Rob1 LSDVC-yvar | Rob2 2SLS-noCOVID | Rob3 Binding
-# Entrada: data/processed/panel_final_v5.csv
+# Entrada: data/processed/panel_slim.csv
 # Saída:   output/tables/tabela_final.{html,tex,txt}
 # =============================================================================
 
@@ -16,7 +16,7 @@ suppressPackageStartupMessages(lapply(pkgs, library, character.only = TRUE))
 dir.create("output/tables", recursive = TRUE, showWarnings = FALSE)
 set.seed(2025)
 
-panel <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   arrange(uf, year) %>%
   group_by(uf) %>%
   mutate(dcl_lag1 = dplyr::lag(dcl_sobre_rcl_ext, 1)) %>%

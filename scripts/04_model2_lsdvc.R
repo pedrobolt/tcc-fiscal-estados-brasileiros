@@ -3,7 +3,7 @@
 # Modelo II — Dinâmica da Dívida Pública Estadual
 #   II-A: LSDVC (Bruno 2005) — Within + Nickell bias correction + bootstrap SEs
 #   II-B: FE + Driscoll-Kraay SEs (robustez a dependência cross-seccional)
-# Entrada: data/processed/panel_final_v5.csv
+# Entrada: data/processed/panel_slim.csv
 # Resultados: ρ=0.988***, θ=−0.937*** (LSDVC); ρ=0.862***, θ=−0.746*** (FE+DK)
 # =============================================================================
 
@@ -15,7 +15,7 @@ suppressPackageStartupMessages(lapply(pkgs, library, character.only = TRUE))
 
 set.seed(2025)
 
-panel <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   arrange(uf, year) %>%
   filter(!is.na(dcl_sobre_rcl_ext),
          !is.na(primario_sobre_rcl_ext),
@@ -123,7 +123,7 @@ cat("\n════════════════════════�
 cat(" MODEL II-B: FE + Driscoll-Kraay SEs\n")
 cat("════════════════════════════════════════════════════════\n")
 
-panel_dk <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel_dk <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   arrange(uf, year) %>%
   group_by(uf) %>%
   mutate(dcl_lag1 = dplyr::lag(dcl_sobre_rcl_ext, 1)) %>%

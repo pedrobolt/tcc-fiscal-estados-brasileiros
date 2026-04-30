@@ -7,3 +7,4 @@ output/lib*/
 data/raw/siconfi/*.rds
 data/raw/bcb/*.rds
 data/raw/ibge/*.rds
+*.rds

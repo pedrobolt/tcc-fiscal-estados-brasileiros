@@ -4,7 +4,7 @@
 #   ROB1: Modelo II com hiato do produto (yvar) no lugar do crescimento do PIB
 #   ROB2: Modelo I-B (2SLS) excluindo anos da pandemia (2020-2021)
 #   UNIT ROOT: IPS (Im-Pesaran-Shin), LLC (Levin-Lin-Chu), Hadri
-# Entrada: data/processed/panel_final_v5.csv
+# Entrada: data/processed/panel_slim.csv
 # =============================================================================
 
 pkgs <- c("dplyr", "readr", "fixest", "plm")
@@ -15,7 +15,7 @@ suppressPackageStartupMessages(lapply(pkgs, library, character.only = TRUE))
 
 set.seed(2025)
 
-panel <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   arrange(uf, year) %>%
   group_by(uf) %>%
   mutate(dcl_lag1 = dplyr::lag(dcl_sobre_rcl_ext, 1)) %>%
@@ -129,7 +129,7 @@ cat("═════════════════════════
 cat(" TESTES DE RAIZ UNITÁRIA em dcl_sobre_rcl_ext\n")
 cat("═══════════════════════════════════════════════════════════════\n\n")
 
-panel_ur <- read_csv("data/processed/panel_final_v5.csv", show_col_types = FALSE) %>%
+panel_ur <- read_csv("data/processed/panel_slim.csv", show_col_types = FALSE) %>%
   filter(!is.na(dcl_sobre_rcl_ext)) %>%
   arrange(uf, year) %>%
   group_by(uf) %>% filter(n() >= 10) %>% ungroup()
