@@ -1,0 +1,56 @@
+% Tabela 2 — Estatísticas Descritivas
+\begin{table}[htbp]
+\caption{Estatísticas Descritivas — Painel de Estados Brasileiros (2002--2024)}
+\label{tab:descritivas}
+\small
+
+\noindent\textbf{Painel A — Amostra completa}\\[4pt]
+\begin{tabular}{lrrrrrr}
+\toprule
+Variável & N & Média & D.P. & Mín. & Mediana & Máx. \\
+\midrule
+DCL/RCL & 562 & 0.826 & 0.717 & -0.245 & 0.550 & 3.190 \\
+Primário/RCL & 562 & 0.040 & 0.071 & -0.176 & 0.039 & 0.296 \\
+Encargos/RCL & 560 & 0.046 & 0.036 & 0.002 & 0.036 & 0.306 \\
+Crescimento PIB (%) & 525 & 4.354 & 6.082 & -17.807 & 4.174 & 27.654 \\
+Hiato do produto & 550 & 0.000 & 0.054 & -0.195 & -0.003 & 0.171 \\
+Teto contratual (%) & 575 & 13.280 & 1.041 & 12.000 & 13.000 & 15.000 \\
+\bottomrule
+\end{tabular}\\[12pt]
+\noindent\textbf{Painel B — Médias por grupo de teto}\\[4pt]
+\begin{tabular}{lrrr@{\hspace{8pt}}rrr@{\hspace{8pt}}rrr}
+\toprule
+ & \multicolumn{3}{c}{Teto 12\%} & \multicolumn{3}{c}{Teto 13\%} & \multicolumn{3}{c}{Teto 15\%} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+Variável & N & Média & D.P. & N & Média & D.P. & N & Média & D.P. \\
+\midrule
+DCL/RCL & 115 & 0.420 & 0.263 & 309 & 0.969 & 0.772 & 138 & 0.846 & 0.725 \\
+Primário/RCL & 115 & 0.034 & 0.078 & 309 & 0.035 & 0.068 & 138 & 0.055 & 0.071 \\
+\midrule
+\multicolumn{10}{l}{\textit{Teste-t DCL/RCL: 12\% vs 13\% — $p$=0.0000; 12\% vs 15\% — $p$=0.0000}} \\
+\bottomrule
+\end{tabular}\\[12pt]
+\noindent\textbf{Painel C — Matriz de Correlações}\\[4pt]
+\begin{tabular}{lrrrrrr}
+\toprule
+ & DCL/RCL & Primário/RCL & Encargos/RCL & Crescimento PIB (%) & Hiato do produto & Teto contratual (%)
+ \\
+\midrule
+DCL/RCL & 1.000 &  &  &  &  & 
+ \\
+Primário/RCL & 0.061 & 1.000 &  &  &  & 
+ \\
+Encargos/RCL & \textbf{0.593} & 0.172 & 1.000 &  &  & 
+ \\
+Crescimento PIB (%) & -0.055 & 0.199 & -0.007 & 1.000 &  & 
+ \\
+Hiato do produto & -0.116 & -0.155 & -0.064 & 0.454 & 1.000 & 
+ \\
+Teto contratual (%) & 0.123 & 0.125 & 0.080 & 0.078 & 0.012 & 1.000
+ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}\small
+\item Notas: D.P.~=~Desvio padrão. Painel~B: teste-t de Welch. Painel~C: Pearson; \textbf{negrito} indica $|r|>0{,}50$. Amostra: 25 estados brasileiros (excl.~AP e TO), 2002--2024.
+\end{tablenotes}
+\end{table}
