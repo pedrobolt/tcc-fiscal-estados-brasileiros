@@ -172,18 +172,20 @@ save_fig(fig3, "fig3_primario_por_teto")
 # FIGURA 4 — Forest plot: robustez dos coeficientes principais
 # =============================================================================
 forest_data <- tibble(
-  spec   = rep(c("2SLS\n(baseline)", "Rob2\n(sem COVID)", "Rob3\n(binding)"), 2),
-  coef   = rep(c("beta1", "beta2"), each = 3),
-  est    = c(0.653, 0.692, 0.670,   -0.041, -0.043, -0.042),
-  se     = c(0.170, 0.169, 0.170,    0.012,  0.012,  0.012)
+  spec = c(rep(c("2SLS\n(baseline)", "Rob2\n(sem COVID)", "Rob3\n(binding)"), 2),
+           "Rob3\n(binding)"),
+  coef = c(rep("beta1", 3), rep("beta2", 3), "beta3"),
+  est  = c(0.653, 0.692, 0.670,  -0.041, -0.043, -0.042,  -0.0005),
+  se   = c(0.170, 0.169, 0.170,   0.012,  0.012,  0.012,   0.0004)
 ) %>%
   mutate(
     lo95 = est - 1.96 * se,
     hi95 = est + 1.96 * se,
     coef_label = factor(coef,
-                        levels = c("beta1", "beta2"),
+                        levels = c("beta1", "beta2", "beta3"),
                         labels = c("\u03b2\u2081  DCL/RCL (t-1)",
-                                   "\u03b2\u2082  DCL/RCL \u00d7 Teto")),
+                                   "\u03b2\u2082  DCL/RCL (t-1) \u00d7 Teto",
+                                   "\u03b2\u2083  DCL/RCL (t-1) \u00d7 Teto \u00d7 Binding")),
     spec = factor(spec, levels = rev(c("2SLS\n(baseline)",
                                        "Rob2\n(sem COVID)",
                                        "Rob3\n(binding)")))
@@ -197,12 +199,14 @@ fig4 <- ggplot(forest_data, aes(x = est, y = spec,
   geom_point(size = 3) +
   facet_wrap(~coef_label, scales = "free_x", nrow = 1) +
   scale_color_manual(
-    values = c("\u03b2\u2081  DCL/RCL (t-1)"       = accent,
-               "\u03b2\u2082  DCL/RCL \u00d7 Teto" = "gray30"),
+    values = c("\u03b2\u2081  DCL/RCL (t-1)"                      = accent,
+               "\u03b2\u2082  DCL/RCL (t-1) \u00d7 Teto"              = "gray30",
+               "\u03b2\u2083  DCL/RCL (t-1) \u00d7 Teto \u00d7 Binding"    = "gray55"),
     name = NULL) +
   scale_shape_manual(
-    values = c("\u03b2\u2081  DCL/RCL (t-1)"       = 16,
-               "\u03b2\u2082  DCL/RCL \u00d7 Teto" = 17),
+    values = c("\u03b2\u2081  DCL/RCL (t-1)"                      = 16,
+               "\u03b2\u2082  DCL/RCL (t-1) \u00d7 Teto"              = 17,
+               "\u03b2\u2083  DCL/RCL (t-1) \u00d7 Teto \u00d7 Binding"    = 15),
     name = NULL) +
   labs(
     title    = "Figura 4 \u2014 Robustez dos coeficientes principais (Modelo I)",

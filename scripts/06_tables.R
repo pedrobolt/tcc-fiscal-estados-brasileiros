@@ -116,8 +116,10 @@ cat("Todos os modelos prontos.\n\n")
 # =============================================================================
 mk_stars <- function(p) ifelse(p<0.01,"***",ifelse(p<0.05,"**",ifelse(p<0.10,"*","")))
 fc    <- function(est,se,p) list(coef=sprintf("%.3f%s",est,mk_stars(p)), se=sprintf("(%.3f)",se))
+fc4   <- function(est,se,p) list(coef=sprintf("%.4f%s",est,mk_stars(p)), se=sprintf("(%.4f)",se))
 blank <- list(coef="", se="")
 gf    <- function(mod,var) { if (!var %in% names(coef(mod))) return(blank); fc(coef(mod)[var],se(mod)[var],pvalue(mod)[var]) }
+gf4   <- function(mod,var) { if (!var %in% names(coef(mod))) return(blank); fc4(coef(mod)[var],se(mod)[var],pvalue(mod)[var]) }
 gl    <- function(ls,var)  { b<-ls$coef; s<-ls$se; pv<-ls$pval; if (!var %in% names(b)) return(blank); fc(b[var],s[var],pv(var)) }
 
 cn <- c(" ","I-A: MQO-EF","I-B: 2SLS","II-A: LSDVC","II-B: EF+DK",
@@ -136,9 +138,9 @@ rows <- list(
        c3=blank, c4=blank, c5=blank,
        c6=gf(m_nc,"fit_d_lag1_teto"), c7=gf(m_rob3,"fit_d_lag1_teto")),
 
-  list(label="DCL/RCL \u00d7 Teto \u00d7 Binding",
+  list(label="DCL/RCL (t-1) \u00d7 Teto \u00d7 Binding",
        c1=blank, c2=blank, c3=blank, c4=blank, c5=blank, c6=blank,
-       c7=gf(m_rob3,"fit_d_lag1_teto_binding")),
+       c7=gf4(m_rob3,"fit_d_lag1_teto_binding")),
 
   list(label="Hiato do produto",
        c1=gf(m_ols,"yvar"),         c2=gf(m_iv,"yvar"),
