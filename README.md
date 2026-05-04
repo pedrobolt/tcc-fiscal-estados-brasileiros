@@ -8,7 +8,7 @@ para o contexto das finanças estaduais brasileiras.
 > The experience of sub-Sahara African countries.*
 > Journal of Policy Modeling, 47, 166–186.
 
-Metodologia completa: [`docs/metodologia_tcc_v8.pdf`](docs/metodologia_tcc_v8.pdf)
+Metodologia completa: [`docs/metodologia_tcc_v9.pdf`](docs/metodologia_tcc_v9.pdf)
 
 ---
 
@@ -64,7 +64,7 @@ tcc/
 │   └── 09_pre_trend.R                # Figuras 5–6: análise de pré-tendência
 ├── output/
 │   ├── tables/
-│   │   ├── tabela_final.html         # Tabela 1 — resultados (7 colunas)
+│   │   ├── tabela_final.html         # Tabela 1 — resultados (6 colunas)
 │   │   ├── tabela_final.tex          # Versão LaTeX
 │   │   ├── tabela_final.txt          # Versão texto
 │   │   ├── estatisticas_descritivas.html  # Tabela 2 — descritivas
@@ -77,7 +77,7 @@ tcc/
 │       ├── fig5_pre_trend.{pdf,png}
 │       └── fig6_event_study.{pdf,png}
 ├── docs/
-│   └── metodologia_tcc_v8.pdf        # Metodologia completa
+│   └── metodologia_tcc_v9.pdf        # Metodologia completa
 ├── run_all.R                         # Pipeline completo (9 etapas)
 └── README.md
 ```

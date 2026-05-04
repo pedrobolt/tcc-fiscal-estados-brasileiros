@@ -99,26 +99,26 @@ cat(sprintf("  gamma Hiato prod. : %+.4f  SE=%.4f  p=%.4f\n\n",
             2*pt(-abs(b_lsdvc1["yvar"]/boot_se1["yvar"]), df=dof1)))
 
 # =============================================================================
-# ROB2: 2SLS excluindo 2020-2021
-# Resultados esperados: beta1=0.751***, beta2=-0.048***
+# Rob2 — excluindo COVID (2020-2021)
+# Kept for reference but excluded from final table per scope decision
 # =============================================================================
-cat("═══════════════════════════════════════════════════════════════\n")
-cat(" ROB2 — Modelo I-B (2SLS) excluindo anos COVID (2020-2021)\n")
-cat("═══════════════════════════════════════════════════════════════\n\n")
-
-panel_nocovid <- panel %>% filter(!year %in% c(2020, 2021))
-
-m_rob2 <- feols(
-  primario_sobre_rcl_ext ~ yvar | uf + year |
-    d_lag1 + d_lag1_teto ~ d_lag2 + d_lag2_teto,
-  data = panel_nocovid, cluster = ~uf)
-
-print(summary(m_rob2))
-print(fitstat(m_rob2, ~ivf + wh))
-cat(sprintf("\n  beta1 DCL/RCL(t-1) : %+.3f  [baseline: %.3f]\n",
-            coef(m_rob2)["fit_d_lag1"], BASE_b1))
-cat(sprintf("  beta2 DCL x Teto   : %+.3f  [baseline: %.3f]\n\n",
-            coef(m_rob2)["fit_d_lag1_teto"], BASE_b2))
+# cat("═══════════════════════════════════════════════════════════════\n")
+# cat(" ROB2 — Modelo I-B (2SLS) excluindo anos COVID (2020-2021)\n")
+# cat("═══════════════════════════════════════════════════════════════\n\n")
+#
+# panel_nocovid <- panel %>% filter(!year %in% c(2020, 2021))
+#
+# m_rob2 <- feols(
+#   primario_sobre_rcl_ext ~ yvar | uf + year |
+#     d_lag1 + d_lag1_teto ~ d_lag2 + d_lag2_teto,
+#   data = panel_nocovid, cluster = ~uf)
+#
+# print(summary(m_rob2))
+# print(fitstat(m_rob2, ~ivf + wh))
+# cat(sprintf("\n  beta1 DCL/RCL(t-1) : %+.3f  [baseline: %.3f]\n",
+#             coef(m_rob2)["fit_d_lag1"], BASE_b1))
+# cat(sprintf("  beta2 DCL x Teto   : %+.3f  [baseline: %.3f]\n\n",
+#             coef(m_rob2)["fit_d_lag1_teto"], BASE_b2))
 
 # =============================================================================
 # RAIZ UNITÁRIA: IPS, LLC, Hadri

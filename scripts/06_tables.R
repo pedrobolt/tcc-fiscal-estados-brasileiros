@@ -1,8 +1,8 @@
 # =============================================================================
 # scripts/06_tables.R
-# Tabela de resultados publicável — 7 colunas (AER style)
+# Tabela de resultados publicável — 6 colunas (AER style)
 # Cols: I-A OLS-FE | I-B 2SLS | II-A LSDVC | II-B EF+DK |
-#       Rob1 LSDVC-yvar | Rob2 2SLS-noCOVID | Rob3 Binding
+#       Rob1 LSDVC-yvar | Rob3 Binding
 # Entrada: data/processed/panel_slim.csv
 # Saída:   output/tables/tabela_final.{html,tex,txt}
 # =============================================================================
@@ -48,14 +48,7 @@ m_dk  <- feols(dcl_sobre_rcl_ext ~ dcl_lag1 + primario_sobre_rcl_ext +
                  crescimento_pib_pct | uf + year,
                data = panel, panel.id = ~uf + year, vcov = "DK")
 
-# Col 6: Rob2 — 2SLS excluding COVID
-panel_nc <- panel %>% filter(!year %in% c(2020, 2021))
-m_nc  <- feols(primario_sobre_rcl_ext ~ yvar | uf + year |
-                 d_lag1 + d_lag1_teto ~ d_lag2 + d_lag2_teto,
-               data = panel_nc, cluster = ~uf)
-fs_nc <- fitstat(m_nc, "ivf"); wh_nc <- fitstat(m_nc, "wh")[[1]]$p
-
-# Col 7: Rob3 — 2SLS with binding triple interaction
+# Col 6: Rob3 — 2SLS with binding triple interaction
 panel_rob3 <- panel %>%
   filter(!is.na(primario_sobre_rcl_ext), !is.na(d_lag1), !is.na(d_lag2),
          !is.na(d_lag1_teto), !is.na(d_lag2_teto),
@@ -123,7 +116,7 @@ gf4   <- function(mod,var) { if (!var %in% names(coef(mod))) return(blank); fc4(
 gl    <- function(ls,var)  { b<-ls$coef; s<-ls$se; pv<-ls$pval; if (!var %in% names(b)) return(blank); fc(b[var],s[var],pv(var)) }
 
 cn <- c(" ","I-A: MQO-EF","I-B: 2SLS","II-A: LSDVC","II-B: EF+DK",
-        "Rob1: LSDVC-yvar","Rob2: 2SLS-noCOV","Rob3: Binding")
+        "Rob1: LSDVC-yvar","Rob3: Binding")
 
 rows <- list(
   list(label="DCL/RCL (t-1)",
@@ -131,43 +124,43 @@ rows <- list(
        c3=gl(lsdvc3,"lag(dcl_sobre_rcl_ext, 1)"),
        c4=gf(m_dk,"dcl_lag1"),
        c5=gl(lsdvc5,"lag(dcl_sobre_rcl_ext, 1)"),
-       c6=gf(m_nc,"fit_d_lag1"),    c7=gf(m_rob3,"fit_d_lag1")),
+       c6=gf(m_rob3,"fit_d_lag1")),
 
   list(label="DCL/RCL (t-1) \u00d7 Teto",
        c1=gf(m_ols,"d_lag1_teto"),  c2=gf(m_iv,"fit_d_lag1_teto"),
        c3=blank, c4=blank, c5=blank,
-       c6=gf(m_nc,"fit_d_lag1_teto"), c7=gf(m_rob3,"fit_d_lag1_teto")),
+       c6=gf(m_rob3,"fit_d_lag1_teto")),
 
   list(label="DCL/RCL (t-1) \u00d7 Teto \u00d7 Binding",
-       c1=blank, c2=blank, c3=blank, c4=blank, c5=blank, c6=blank,
-       c7=gf4(m_rob3,"fit_d_lag1_teto_binding")),
+       c1=blank, c2=blank, c3=blank, c4=blank, c5=blank,
+       c6=gf4(m_rob3,"fit_d_lag1_teto_binding")),
 
   list(label="Hiato do produto",
        c1=gf(m_ols,"yvar"),         c2=gf(m_iv,"yvar"),
        c3=blank, c4=blank,          c5=gl(lsdvc5,"yvar"),
-       c6=gf(m_nc,"yvar"),          c7=gf(m_rob3,"yvar")),
+       c6=gf(m_rob3,"yvar")),
 
   list(label="Prim\u00e1rio/RCL",
        c1=blank, c2=blank,
        c3=gl(lsdvc3,"primario_sobre_rcl_ext"),
        c4=gf(m_dk,"primario_sobre_rcl_ext"),
        c5=gl(lsdvc5,"primario_sobre_rcl_ext"),
-       c6=blank, c7=blank),
+       c6=blank),
 
   list(label="Crescimento PIB (%)",
        c1=blank, c2=blank,
        c3=gl(lsdvc3,"crescimento_pib_pct"),
        c4=gf(m_dk,"crescimento_pib_pct"),
-       c5=blank, c6=blank, c7=blank)
+       c5=blank, c6=blank)
 )
 
 build_df <- function(rows, cn) {
   out <- list()
   for (r in rows) {
     out[[length(out)+1]] <- setNames(
-      c(r$label,r$c1$coef,r$c2$coef,r$c3$coef,r$c4$coef,r$c5$coef,r$c6$coef,r$c7$coef), cn)
+      c(r$label,r$c1$coef,r$c2$coef,r$c3$coef,r$c4$coef,r$c5$coef,r$c6$coef), cn)
     out[[length(out)+1]] <- setNames(
-      c("",r$c1$se,r$c2$se,r$c3$se,r$c4$se,r$c5$se,r$c6$se,r$c7$se), cn)
+      c("",r$c1$se,r$c2$se,r$c3$se,r$c4$se,r$c5$se,r$c6$se), cn)
   }
   as.data.frame(do.call(rbind, out), stringsAsFactors=FALSE)
 }
@@ -178,30 +171,28 @@ df_coef <- build_df(rows, cn)
 # =============================================================================
 df_gof <- tribble(
   ~` `,~`I-A: MQO-EF`,~`I-B: 2SLS`,~`II-A: LSDVC`,~`II-B: EF+DK`,
-        ~`Rob1: LSDVC-yvar`,~`Rob2: 2SLS-noCOV`,~`Rob3: Binding`,
+        ~`Rob1: LSDVC-yvar`,~`Rob3: Binding`,
   "Obs.",
     as.character(m_ols$nobs), as.character(m_iv$nobs),
     as.character(lsdvc3$nobs), as.character(m_dk$nobs),
-    as.character(lsdvc5$nobs), as.character(m_nc$nobs),
-    as.character(m_rob3$nobs),
+    as.character(lsdvc5$nobs), as.character(m_rob3$nobs),
   "R\u00b2 within",
     as.character(round(r2(m_ols,"wr2"),3)), "\u2014", "\u2014",
-    as.character(round(r2(m_dk,"wr2"),3)), "\u2014", "\u2014", "\u2014",
+    as.character(round(r2(m_dk,"wr2"),3)), "\u2014", "\u2014",
   "F-stat 1\u00ba est\u00e1gio",
     "\u2014",
     sprintf("%.0f/%.0f", fs_iv[[1]]$stat, fs_iv[[2]]$stat),
     "\u2014", "\u2014", "\u2014",
-    sprintf("%.0f/%.0f", fs_nc[[1]]$stat, fs_nc[[2]]$stat),
     sprintf("%.0f/%.0f/%.0f", fs_r3[[1]]$stat, fs_r3[[2]]$stat, fs_r3[[3]]$stat),
   "Wu-Hausman (p)",
     "\u2014", sprintf("%.4f",wh_iv), "\u2014", "\u2014", "\u2014",
-    sprintf("%.4f",wh_nc), sprintf("%.4f",wh_r3),
+    sprintf("%.4f",wh_r3),
   "Bootstrap B=500",
-    "\u2014","\u2014","Sim","\u2014","Sim","\u2014","\u2014",
+    "\u2014","\u2014","Sim","\u2014","Sim","\u2014",
   "Corre\u00e7\u00e3o Nickell",
-    "\u2014","\u2014","Sim","\u2014","Sim","\u2014","\u2014",
-  "EF Estado",  "Sim","Sim","Sim","Sim","Sim","Sim","Sim",
-  "EF Ano",     "Sim","Sim","N\u00e3o","Sim","N\u00e3o","Sim","Sim"
+    "\u2014","\u2014","Sim","\u2014","Sim","\u2014",
+  "EF Estado",  "Sim","Sim","Sim","Sim","Sim","Sim",
+  "EF Ano",     "Sim","Sim","N\u00e3o","Sim","N\u00e3o","Sim"
 )
 
 df_full <- bind_rows(df_coef, df_gof); names(df_full)[1] <- " "
@@ -217,7 +208,7 @@ note <- paste(
 # =============================================================================
 # 4. Terminal
 # =============================================================================
-w <- c(28,10,9,11,10,13,13,12); sep <- strrep("-",sum(w)+length(w)-1)
+w <- c(28,10,9,11,10,13,12); sep <- strrep("-",sum(w)+length(w)-1)
 fmt_row <- function(r) paste(sprintf(paste0("%-",w,"s"),unlist(r)),collapse=" ")
 cat(fmt_row(as.list(names(df_full))),"\n"); cat(sep,"\n")
 for (i in seq_len(nrow(df_full))) { r <- as.list(df_full[i,])
@@ -227,7 +218,7 @@ cat(sep,"\n"); cat(strwrap(note,width=sum(w)+length(w)-1),sep="\n"); cat("\n")
 # =============================================================================
 # 5. TXT
 # =============================================================================
-writeLines(c("TABELA: Sustentabilidade Fiscal e Regras de Endividamento (7 colunas)",
+writeLines(c("TABELA: Sustentabilidade Fiscal e Regras de Endividamento (6 colunas)",
              "Painel de Estados Brasileiros (2002-2024)",
              strrep("=",sum(w)+length(w)-1),
              capture.output(print(df_full,row.names=FALSE)),
@@ -242,11 +233,11 @@ html_out <- df_full %>%
       caption=paste("Sustentabilidade Fiscal e Regras de Endividamento",
                     "\u2014 Painel de Estados Brasileiros (2002\u20132024)")) %>%
   kable_classic(full_width=FALSE, html_font="Times New Roman") %>%
-  column_spec(1,bold=TRUE,width="10em") %>% column_spec(2:8,width="4.8em") %>%
+  column_spec(1,bold=TRUE,width="10em") %>% column_spec(2:7,width="4.8em") %>%
   row_spec(0,bold=TRUE) %>%
   add_header_above(c(" "=1,"Dep.: Prim\u00e1rio/RCL"=2,"Dep.: DCL/RCL"=3,
-                     "Dep.: Prim\u00e1rio/RCL"=2)) %>%
-  add_header_above(c(" "=1,"Modelos Principais"=4,"Verifica\u00e7\u00f5es de Robustez"=3)) %>%
+                     "Dep.: Prim\u00e1rio/RCL"=1)) %>%
+  add_header_above(c(" "=1,"Modelos Principais"=4,"Verifica\u00e7\u00f5es de Robustez"=2)) %>%
   footnote(general=note,general_title="",footnote_as_chunk=TRUE)
 writeLines(as.character(html_out),"output/tables/tabela_final.html")
 
@@ -257,11 +248,11 @@ tex_out <- df_full %>%
   kbl(format="latex",booktabs=TRUE,escape=TRUE,linesep="",
       caption=paste("Sustentabilidade Fiscal e Regras de Endividamento",
                     "--- Painel de Estados Brasileiros (2002--2024)"),
-      label="tab:resultados7") %>%
+      label="tab:resultados6") %>%
   kable_styling(latex_options=c("hold_position","scale_down")) %>%
   add_header_above(c(" "=1,"Dep.: Primario/RCL"=2,"Dep.: DCL/RCL"=3,
-                     "Dep.: Primario/RCL"=2)) %>%
-  add_header_above(c(" "=1,"Modelos Principais"=4,"Verificacoes de Robustez"=3)) %>%
+                     "Dep.: Primario/RCL"=1)) %>%
+  add_header_above(c(" "=1,"Modelos Principais"=4,"Verificacoes de Robustez"=2)) %>%
   footnote(general=note,general_title="",footnote_as_chunk=TRUE,threeparttable=TRUE)
 writeLines(as.character(tex_out),"output/tables/tabela_final.tex")
 
