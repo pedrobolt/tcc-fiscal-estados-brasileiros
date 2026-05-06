@@ -1,0 +1,131 @@
+\documentclass[
+  12pt,
+  oneside,
+  a4paper,
+  brazilian,
+  sumario=tradicional
+]{abntex2}
+
+% ----------------------------------------------------------
+% Pacotes básicos
+% ----------------------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[alf]{abntex2cite}
+\usepackage{babel}
+
+% ----------------------------------------------------------
+% Informações do trabalho
+% ----------------------------------------------------------
+\titulo{Regras fiscais e seus impactos sobre a dívida dos estados brasileiros}
+\autor{Pedro Leite Tunholi}
+\local{Brasília}
+\data{2026}
+
+\instituicao{%
+  Universidade de Brasília
+  \par
+  Faculdade de Administração, Contabilidade, Economia e Gestão de Políticas Públicas
+  \par
+  Departamento de Ciências Econômicas
+}
+
+\orientador{Vander Mendes Lucas}
+
+\preambulo{Trabalho de Conclusão de Curso apresentado ao Departamento de Ciências Econômicas da Universidade de Brasília como requisito parcial para obtenção do grau de Bacharel em Ciências Econômicas.}
+
+% ----------------------------------------------------------
+% Capa personalizada
+% ----------------------------------------------------------
+\renewcommand{\imprimircapa}{%
+\begin{capa}%
+\center
+
+\vspace*{1.4cm}
+
+\includegraphics[width=2.8cm]{pretextuais/logo_unb.png}
+
+\vspace{0.35cm}
+
+{\bfseries UNIVERSIDADE DE BRASÍLIA\par}
+
+\vspace{0.25cm}
+
+{Faculdade de Administração, Contabilidade, Economia e Gestão de Políticas Públicas\par}
+
+\vspace{0.25cm}
+
+{Departamento de Ciências Econômicas\par}
+
+\vspace*{3.4cm}
+
+{\bfseries \MakeUppercase{\imprimirautor}\par}
+
+\vfill
+
+{\bfseries \MakeUppercase{\imprimirtitulo}\par}
+
+\vfill
+
+{\bfseries \imprimirlocal\par}
+{\bfseries \imprimirdata\par}
+
+\end{capa}
+}
+
+% ----------------------------------------------------------
+% Início do documento
+% ----------------------------------------------------------
+\begin{document}
+
+% ----------------------------------------------------------
+% Elementos pré-textuais
+% ----------------------------------------------------------
+\pretextual
+
+\imprimircapa
+\imprimirfolhaderosto*
+
+\input{pretextuais/agradecimentos}
+
+\input{pretextuais/resumo}  
+
+\input{pretextuais/epigrafe}
+
+% Sumário
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ----------------------------------------------------------
+% Elementos textuais
+% ----------------------------------------------------------
+\textual
+
+\input{capitulos/01_introducao}
+
+\input{capitulos/02_literatura}
+
+\input{capitulos/03_contexto_institucional}
+
+\input{capitulos/04_dados_metodologia}
+
+\input{capitulos/05_resultados}
+
+\input{capitulos/06_conclusao}
+
+% ----------------------------------------------------------
+% Elementos pós-textuais
+% ----------------------------------------------------------
+\postextual
+
+\bibliography{referencias}
+
+\end{document}

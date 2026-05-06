@@ -8,3 +8,28 @@ data/raw/siconfi/*.rds
 data/raw/bcb/*.rds
 data/raw/ibge/*.rds
 *.rds
+
+# LaTeX auxiliares
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.xdv
+
+# R / sistema
+.Rhistory
+.RData
+.DS_Store
+Thumbs.db
