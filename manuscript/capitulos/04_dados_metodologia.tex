@@ -1,182 +1,43 @@
-\chapter{Dados e metodologia}
+\chapter{Métodos e procedimentos}
 \label{chap:metodologia}
 
-Esta seção apresenta a base de dados, a construção das variáveis e a estratégia empírica utilizada para avaliar a sustentabilidade fiscal dos estados brasileiros. A metodologia segue uma adaptação do arcabouço de \citeonline{abubakarDebtReliefFiscal2025}, originalmente aplicado a países da África Subsaariana, para o contexto subnacional brasileiro. A adaptação preserva a lógica central do estudo de referência, combinando uma função de reação fiscal com um modelo de dinâmica da dívida, mas ajusta as variáveis ao ambiente institucional dos estados brasileiros, especialmente ao papel da Receita Corrente Líquida (RCL) e dos contratos de refinanciamento da Lei n\textsuperscript{o}~9.496/1997.
+O presente trabalho baseia-se na estratégia empírica que retoma a função de reação fiscal desenvolvida por \citeonline{abubakarDebtReliefFiscal2025} para 37 países localizados na África Subsaariana durante o período 2000-2019, adaptando-a para o contexto dos estados brasileiros. A adaptação preserva a lógica de identificação via interação entre dívida defasada e variável institucional, com três modificações principais.
 
-\section{Base de dados e amostra}
-\label{sec:dados_amostra}
+Primeiro, as variáveis fiscais são expressas em proporção da Receita Corrente Líquida (RCL), em vez do PIB, por ser a referência adotada na LRF e nos contratos de refinanciamento. Em segundo lugar, a variável institucional é substituída: enquanto o estudo original utiliza uma dummy binária para a existência de regras fiscais, este trabalho emprega o teto contratual de comprometimento da RCL definido na Lei n\textsuperscript{o}~9.496/1997 como variável contínua de permissividade, explorando a variação cross-sectional entre os estados. Por fim, variáveis do estudo original sem equivalente estadual direto foram omitidas, seja por indisponibilidade de dados comparáveis em nível subnacional, seja por serem, no caso de choques macroeconômicos comuns, absorvidas pelos efeitos fixos de ano.
 
-A análise utiliza um painel anual de estados brasileiros no período de 2002 a 2024. A escolha do período busca combinar a disponibilidade de informações fiscais estaduais com a necessidade de avaliar a dinâmica da dívida após a consolidação do arcabouço de responsabilidade fiscal e dos contratos de refinanciamento firmados no final da década de 1990. A amostra principal é composta por 25 estados, excluindo Amapá e Tocantins, uma vez que essas unidades não possuem contrato de refinanciamento no âmbito da Lei n\textsuperscript{o}~9.496/1997 comparável aos demais estados analisados.
+\section{Dados e variáveis}
+\label{sec:dados}
 
-As principais informações fiscais são obtidas a partir de bases da Secretaria do Tesouro Nacional (STN), incluindo dados do SICONFI, do SISTN e de séries históricas fiscais estaduais. Para o período mais recente, as variáveis de dívida, RCL e encargos são extraídas do SICONFI. Para os anos anteriores à consolidação dessa base, são utilizadas informações históricas da STN e dados do FINBRA, em especial para a construção do resultado primário.
+A base de dados compreende 25 unidades federativas brasileiras (24 estados e o Distrito Federal), acompanhadas em série anual de 2002 até 2023, com exclusão de Amapá e Tocantins por não terem celebrado acordos de refinanciamento sob a Lei n\textsuperscript{o}~9.496/1997.
 
-As informações de atividade econômica estadual são obtidas junto ao IBGE, por meio das Contas Regionais. Esses dados são utilizados para construir medidas de crescimento real do PIB estadual e de ciclo econômico. A cobertura disponível do PIB estadual vai até 2023, uma vez que os dados de 2024 ainda não estavam disponíveis em razão da defasagem usual de divulgação das Contas Regionais. Os limites contratuais de comprometimento da receita com o serviço da dívida foram coletados manualmente a partir dos contratos e documentos associados à Lei n\textsuperscript{o}~9.496/1997.
+As variáveis fiscais foram obtidas a partir de fontes distintas conforme o período e a rubrica. Para o endividamento (DCL e RCL), o período 2002--2014 provém das séries históricas da Secretaria do Tesouro Nacional (STN) disponibilizadas no Tesouro Transparente, uma vez que o SICONFI não retorna dados de Relatório de Gestão Fiscal (RGF) anteriores a 2015; o período 2015--2023 provém diretamente do RGF Anexo 2, via SICONFI. O resultado primário de 2002--2014 provém da base FINBRA (STN), dado que o Anexo 6 do Relatório Resumido da Execução Orçamentária (RREO) também só está disponível via SICONFI a partir de 2015, período em que essa rubrica passa a ser extraída diretamente do RREO. Os encargos da dívida no período histórico (2002--2014) provêm da base de Serviço da Dívida dos Estados da STN; a partir de 2015, a mesma fonte do RREO Anexo 6 é utilizada. O PIB estadual nominal provém das Contas Regionais do IBGE, disponíveis até 2023, deflacionado pelo IPCA para obtenção do PIB real. Os tetos contratuais da Lei n\textsuperscript{o}~9.496/1997 foram coletados manualmente a partir dos contratos publicados no Diário Oficial da União e de relatórios do Tesouro Nacional.
 
-A opção por trabalhar com variáveis fiscais em proporção da RCL decorre de duas razões principais. Primeiro, a RCL é a referência institucional utilizada pela Lei de Responsabilidade Fiscal e pelas estatísticas fiscais estaduais contemporâneas, sendo, portanto, o denominador mais diretamente relacionado às regras fiscais aplicáveis aos estados. Segundo, o uso da RCL aproxima a análise da capacidade fiscal efetiva dos governos estaduais, enquanto o PIB estadual, embora relevante como indicador econômico, possui menor aderência direta às restrições legais de endividamento subnacional e pode apresentar limitações de disponibilidade e defasagem.
+A amostra inicia em 2002, primeiro ano com cobertura completa tanto para as variáveis fiscais quanto para o PIB estadual dos 25 entes federativos, período em que todos os contratos de refinanciamento da Lei n\textsuperscript{o}~9.496/1997 já estavam em plena vigência. A janela de estimação tem início em 2004 devido à defasagem de dois períodos para os instrumentos do modelo.
 
-Cabe observar que os contratos originais de refinanciamento estavam associados ao comprometimento da receita conforme os parâmetros legais e contratuais vigentes à época. Neste trabalho, entretanto, as variáveis fiscais são expressas em relação à RCL, por ser o denominador institucional dominante na LRF e nas bases fiscais estaduais utilizadas na análise empírica.
+Como variável dependente, utiliza-se o resultado primário em proporção da Receita Corrente Líquida ($s_{it}$). A normalização pela RCL é padrão na literatura de federalismo fiscal brasileiro e assegura compatibilidade com os limites da LRF e dos contratos de refinanciamento. O endividamento, por sua vez, é mensurado pela Dívida Consolidada Líquida sobre a RCL ($d_{it}$), métrica oficial da LRF e das Resoluções do Senado Federal, que captura o endividamento líquido ao excluir ativos financeiros da dívida bruta.
 
-\section{Variáveis principais}
-\label{sec:variaveis}
+A variável institucional central, o teto de comprometimento da RCL com o serviço da dívida ($teto_i$), é definida nos contratos de refinanciamento de 1997--1999 (Tabela~\ref{tab:tetos}). Nos contratos em que o limite foi estabelecido como intervalo, adotou-se o valor superior como medida de $teto_i$, privilegiando a comparabilidade entre estados. Por ser definido contratualmente antes do período amostral e não variar ao longo do tempo dentro de cada estado, o teto é tratado como característica estrutural invariante no tempo. Mudanças posteriores à Lei n\textsuperscript{o}~9.496/1997 --- como as Leis Complementares n\textsuperscript{o}~148/2014 e n\textsuperscript{o}~156/2016 --- modificaram o indexador e o prazo dos contratos, mas não alteraram as cláusulas de comprometimento máximo da RCL, que permanecem definidas em cada contrato individual celebrado ao amparo da Lei n\textsuperscript{o}~9.496/1997 durante todo o período da amostra.\footnote{O Regime de Recuperação Fiscal (LC n\textsuperscript{o}~159/2017), ao qual o Rio de Janeiro aderiu em setembro de 2017, suspendeu temporariamente os pagamentos devidos à União sem alterar o limite percentual de 13\% da RCL estabelecido no contrato original. Goiás, Minas Gerais e Rio Grande do Sul aderiram ao RRF apenas em 2024, após o fim da amostra; para os demais 24 entes, o teto contratual de 1997 permanece como referência institucional vinculante ao longo de todo o período amostral.}
 
-A variável central de dívida é a Dívida Consolidada Líquida como proporção da Receita Corrente Líquida, denotada por \(d_{it}\). Essa variável mede o estoque relativo de endividamento do estado \(i\) no ano \(t\), em termos da principal base fiscal utilizada pela legislação fiscal contemporânea. A variável de esforço fiscal é o resultado primário como proporção da RCL, denotado por \(s_{it}\). Essa variável é utilizada como dependente no modelo de reação fiscal e como explicativa no modelo de dinâmica da dívida.
+Para controle de efeitos cíclicos, utiliza-se o hiato do produto estadual ($yvar_{it}$), calculado pelo filtro Hodrick-Prescott aplicado ao logaritmo do PIB real estadual.
 
-A variável institucional central é o teto contratual de comprometimento da receita com o serviço da dívida, denotado por \(teto_i\). Esse teto foi definido nos contratos de refinanciamento firmados entre os estados e a União no âmbito da Lei n\textsuperscript{o}~9.496/1997. Na especificação principal, utiliza-se uma medida fixa do teto para cada estado, construída a partir do limite máximo de comprometimento previsto nos contratos. Em termos substantivos, essa variável é interpretada como uma regra fiscal contratual, pois expressa o grau máximo de comprometimento da receita permitido pelo desenho contratual da renegociação.
+\section{Especificação do modelo e estratégia de estimação}
+\label{sec:especificacao}
 
-Em alguns contratos, o limite de comprometimento foi definido como intervalo, e não como percentual único. Nesses casos, a especificação principal utiliza o limite superior do intervalo contratual. Essa escolha busca construir uma medida estável e comparável da permissividade máxima prevista nos contratos. A interpretação, portanto, não é a de que o limite superior tenha sido necessariamente a restrição efetiva em todos os anos, mas sim a de que ele representa o parâmetro máximo de comprometimento permitido pelo desenho contratual.
-
-O controle cíclico utilizado no Modelo I é o hiato do produto estadual, denotado por \(yvar_{it}\). Essa variável é calculada como o componente cíclico do logaritmo do PIB real estadual, obtido por meio do filtro Hodrick-Prescott com parâmetro de suavização \(\lambda = 100\), valor convencional para dados anuais. O objetivo é capturar a posição cíclica da economia estadual em relação à sua tendência. No Modelo II, utiliza-se o crescimento real do PIB estadual, por sua relação mais direta com a dinâmica da razão dívida/RCL, tanto pelo canal de atividade econômica quanto pelo efeito sobre a capacidade de arrecadação.
-
-\section{Indicador de restrição efetiva}
-\label{sec:binding}
-
-Além das variáveis utilizadas na especificação principal, o trabalho constrói um indicador de restrição efetiva, denominado \(binding_{it}\), empregado apenas em verificações de robustez e mecanismos. Essa variável busca capturar situações em que o estado opera próximo ao limite contratual de comprometimento da receita com o serviço da dívida.
-
-A definição utilizada considera que um estado está próximo ao limite quando a razão entre encargos sobre RCL e o teto contratual supera determinado limiar:
+A função de reação fiscal estimada testa a condição de sustentabilidade de \citeonline{bohn1998} em contexto subnacional, condicionada ao desenho contratual da Lei n\textsuperscript{o}~9.496/1997. A equação é:
 
 \begin{equation}
-binding_{it} =
-\begin{cases}
-1, & \text{se } \dfrac{\mathrm{encargos\_sobre\_rcl}_{it}}{teto_i/100} > 0{,}70, \\
-0, & \text{caso contrário.}
-\end{cases}
-\label{eq:binding}
+s_{it} = \alpha_i + \lambda_t + \beta_1 d_{i,t-1} + \beta_2 (d_{i,t-1} \times teto_i) + \gamma \, yvar_{it} + \varepsilon_{it}
+\label{eq:modelo}
 \end{equation}
 
-Como \(\mathrm{encargos\_sobre\_rcl}_{it}\) é medido como razão decimal e \(teto_i\) é expresso em pontos percentuais, o denominador é dividido por 100. Assim, a variável \(binding_{it}\) identifica os casos em que os encargos representam mais de 70\% do limite contratual de comprometimento da receita.
+\noindent onde $s_{it}$ é o resultado primário sobre RCL, $d_{i,t-1}$ é a DCL/RCL defasada, $teto_i$ é o limite contratual de comprometimento da receita, $yvar_{it}$ é o hiato do produto, $\alpha_i$ são efeitos fixos de estado e $\lambda_t$ são efeitos fixos de ano.
 
-Essa variável não integra a especificação principal do Modelo I. Seu objetivo é avaliar, em uma especificação complementar, se o efeito do teto contratual sobre a reação fiscal é diferente nos anos em que o estado opera próximo ao limite de comprometimento. Diferentemente da medida de teto, que é tratada como fixa e definida previamente ao período amostral, o indicador \(binding_{it}\) depende de variáveis fiscais observadas ao longo do tempo e de um limiar convencional. Por esse motivo, seus resultados devem ser interpretados com cautela.
+O coeficiente $\beta_1$ testa a condição de Bohn: se positivo e significativo, indica que o resultado primário responde ao aumento do endividamento, sinalizando a presença de mecanismos de estabilização da dívida. O coeficiente $\beta_2$ é o parâmetro de interesse principal: indica se a intensidade da reação fiscal é condicionada pelo grau de permissividade dos contratos de refinanciamento. A reação fiscal líquida de cada estado é dada por $\beta_1 + \beta_2 \times teto_i$, e sua significância estatística em cada nível de teto observado na amostra é avaliada por um teste de restrição linear.
 
-\section{Estratégia empírica}
-\label{sec:estrategia_empirica}
+Os efeitos fixos de estado absorvem características permanentes de cada unidade federativa, incluindo fatores que determinaram a negociação do teto contratual em 1997; os efeitos fixos de ano capturam choques macroeconômicos comuns a todos os estados (taxa de juros, inflação, câmbio, ciclo econômico nacional e mudanças institucionais federais). A interação $d_{i,t-1} \times teto_i$ sobrevive aos efeitos fixos bidirecionais porque possui variação temporal via $d_{i,t-1}$.
 
-A estratégia empírica é organizada em dois modelos complementares. O primeiro modelo estima uma função de reação fiscal inspirada em \citeonline{bohn1998}, com o objetivo de avaliar se o resultado primário dos estados responde ao aumento do endividamento. O segundo modelo examina a dinâmica da dívida estadual, avaliando a persistência da DCL/RCL e a associação entre resultado primário, crescimento econômico e trajetória do endividamento.
+A dívida defasada ($d_{i,t-1}$) pode ser endógena por simultaneidade dinâmica: um resultado primário fraco pode forçar mais endividamento, gerando correlação com o erro contemporâneo. Como a interação $d_{i,t-1} \times teto_i$ herda essa endogeneidade, a equação~(\ref{eq:modelo}) possui duas variáveis endógenas. Os instrumentos utilizados são $d_{i,t-2}$ e $d_{i,t-2} \times teto_i$, predeterminados em relação ao erro contemporâneo. O modelo é exatamente identificado, de modo que testes de sobreidentificação não se aplicam. A validade dos instrumentos é argumentada com base na literatura de função de reação fiscal: a dívida em $t-2$ afeta o resultado primário em $t$ predominantemente pelo canal do endividamento corrente, estratégia análoga à adotada por \citeonline{abubakarDebtReliefFiscal2025} e \citeonline{tabosa2016}. Essa restrição de exclusão não é diretamente testável e constitui uma limitação reconhecida. Os erros-padrão são clusterizados por estado.
 
-Essa estrutura segue a lógica de \citeonline{abubakarDebtReliefFiscal2025}, mas com adaptações ao caso brasileiro. No estudo de referência, as variáveis fiscais são medidas em relação ao PIB e as regras fiscais são analisadas no nível nacional. Neste trabalho, a análise é deslocada para o nível estadual, utilizando indicadores em proporção da RCL e explorando a heterogeneidade dos tetos contratuais de comprometimento da receita definidos nos contratos da Lei n\textsuperscript{o}~9.496/1997. Dessa forma, a adaptação busca preservar a lógica econômica da abordagem original, ao mesmo tempo em que incorpora as especificidades institucionais do federalismo fiscal brasileiro.
+A validade dessa estratégia é sustentada por três diagnósticos: a endogeneidade é verificada pelo teste de Wu-Hausman; a relevância dos instrumentos é avaliada pela estatística F do primeiro estágio, tendo como referência o critério de \citeonline{stockTestingWeakInstruments2004}; e a especificação MQO com efeitos fixos é reportada como referência para dimensionar o viés de endogeneidade.
 
-\section{Modelo I: função de reação fiscal}
-\label{sec:modelo1}
-
-O Modelo I estima a resposta do resultado primário ao endividamento. A especificação principal é dada por:
-
-\begin{equation}
-s_{it}
-=
-\alpha_i
-+
-\lambda_t
-+
-\beta_1 d_{i,t-1}
-+
-\beta_2 \left(d_{i,t-1} \times teto_i\right)
-+
-\gamma yvar_{it}
-+
-\varepsilon_{it},
-\label{eq:modelo1}
-\end{equation}
-
-em que \(s_{it}\) representa o resultado primário sobre RCL do estado \(i\) no ano \(t\); \(d_{i,t-1}\) é a DCL/RCL defasada em um período; \(teto_i\) é o limite contratual de comprometimento da receita com o serviço da dívida; \(yvar_{it}\) é o hiato do produto estadual; \(\alpha_i\) representa efeitos fixos de estado; \(\lambda_t\) representa efeitos fixos de ano; e \(\varepsilon_{it}\) é o termo de erro.
-
-O coeficiente \(\beta_1\) mede a resposta média do resultado primário ao endividamento defasado. De acordo com a abordagem de \citeonline{bohn1998}, uma resposta positiva do resultado primário ao aumento da dívida é interpretada como evidência compatível com sustentabilidade fiscal, pois sugere que o governo ajusta seu esforço fiscal diante do acúmulo de passivos. No entanto, essa interpretação deve ser feita com cautela. O coeficiente estimado não deve ser lido como prova definitiva de solvência, mas como evidência de uma reação fiscal condicional à especificação, à amostra e aos controles utilizados.
-
-O coeficiente \(\beta_2\) é o principal parâmetro institucional do modelo. Ele indica se a reação fiscal ao endividamento varia conforme o teto contratual de comprometimento da receita. Como a medida de teto utilizada na especificação principal corresponde ao limite superior contratual e é tratada como fixa no tempo para cada estado, seu efeito direto é absorvido pelos efeitos fixos estaduais. A identificação ocorre, portanto, por meio da interação entre essa medida contratual e a dívida defasada. Essa escolha não implica assumir que a restrição efetiva tenha permanecido constante em todos os contratos e anos, mas sim que o limite superior fornece uma medida comparável do desenho contratual entre estados.
-
-Os efeitos fixos de estado controlam por características permanentes das unidades federativas, como estrutura econômica, capacidade administrativa, preferências fiscais persistentes e fatores históricos que podem ter influenciado a negociação dos tetos contratuais. Os efeitos fixos de ano capturam choques comuns a todos os estados, como mudanças no ambiente macroeconômico nacional, alterações na política monetária, inflação, choques federais e mudanças institucionais agregadas. Assim, a relação estimada entre dívida defasada e resultado primário deve ser interpretada como uma resposta fiscal condicional ao ambiente macro-federativo brasileiro.
-
-\section{Endogeneidade e estimação por variáveis instrumentais}
-\label{sec:iv}
-
-A estimação da Equação~\ref{eq:modelo1} por mínimos quadrados ordinários pode estar sujeita a endogeneidade. Embora a dívida seja defasada, ela pode permanecer correlacionada com choques fiscais persistentes, expectativas de ajuste, características não observadas que variam no tempo ou mecanismos de simultaneidade dinâmica. Além disso, a interação entre dívida defasada e teto contratual herda a potencial endogeneidade da própria dívida.
-
-Para lidar com esse problema, a especificação principal do Modelo I é estimada por mínimos quadrados em dois estágios (2SLS). São tratadas como potencialmente endógenas as variáveis \(d_{i,t-1}\) e \(d_{i,t-1} \times teto_i\). Os instrumentos utilizados são a dívida defasada em dois períodos e sua interação com o teto:
-
-\begin{equation}
-Z_{it}
-=
-\left[
-d_{i,t-2},
-\quad
-d_{i,t-2} \times teto_i
-\right].
-\label{eq:instrumentos}
-\end{equation}
-
-A intuição é que a dívida em \(t-2\) está correlacionada com a dívida em \(t-1\), preservando relevância no primeiro estágio, mas é menos suscetível a choques contemporâneos que afetam diretamente o resultado primário em \(t\). A interação defasada preserva a estrutura da variável endógena interativa, evitando instrumentar apenas a dívida isoladamente. A relevância dos instrumentos é avaliada por meio das estatísticas de primeiro estágio, enquanto a endogeneidade é investigada por testes de Wu-Hausman.
-
-Como o modelo é exatamente identificado, com dois instrumentos para duas variáveis endógenas, testes de sobreidentificação como Sargan ou Hansen não se aplicam. A validade da restrição de exclusão, portanto, depende de argumento teórico: assume-se que a dívida em \(t-2\) afeta o resultado primário em \(t\) principalmente por meio da dívida defasada incluída na equação. Essa hipótese não é diretamente testável e constitui uma limitação da estratégia empírica. Por essa razão, os resultados do Modelo I são interpretados como evidência compatível com uma função de reação fiscal, e não como identificação causal perfeita.
-
-\section{Modelo II: dinâmica da dívida estadual}
-\label{sec:modelo2}
-
-O Modelo II examina os fatores associados à dinâmica da dívida estadual. Diferentemente do Modelo I, cujo objetivo é estimar a reação do resultado primário à dívida, o Modelo II toma a DCL/RCL como variável dependente e analisa sua persistência ao longo do tempo. A especificação geral é dada por:
-
-\begin{equation}
-d_{it}
-=
-\mu_i
-+
-\rho d_{i,t-1}
-+
-\theta s_{it}
-+
-\phi gdp_{it}
-+
-\eta_{it},
-\label{eq:modelo2}
-\end{equation}
-
-em que \(d_{it}\) é a DCL/RCL do estado \(i\) no ano \(t\); \(d_{i,t-1}\) é a dívida defasada; \(s_{it}\) é o resultado primário sobre RCL; \(gdp_{it}\) representa o crescimento real do PIB estadual; \(\mu_i\) representa efeitos fixos de estado; e \(\eta_{it}\) é o termo de erro.
-
-O coeficiente \(\rho\) mede a persistência autorregressiva da dívida estadual. Valores elevados de \(\rho\) são esperados em séries de dívida pública, sobretudo no caso brasileiro, em que os contratos de refinanciamento possuem prazos longos e cronogramas rígidos de amortização. O coeficiente \(\theta\) mede a associação entre resultado primário e dívida: espera-se que maiores superávits primários estejam associados à redução da DCL/RCL. Já o crescimento econômico pode afetar a dívida relativa tanto pelo efeito denominador quanto pela melhora da capacidade fiscal dos estados.
-
-A inclusão da variável dependente defasada em painel com dimensão temporal limitada gera potencial viés de Nickell quando estimada por efeitos fixos tradicionais. Por isso, a especificação principal do Modelo II utiliza o estimador LSDVC, que corrige o viés de pequena amostra em painéis dinâmicos. A inferência é realizada por bootstrap com \(B=500\) replicações, procedimento apropriado em painéis com dimensão cross-sectional reduzida e amostras dinâmicas de tamanho moderado.
-
-Como exercício de robustez, também são estimadas especificações com efeitos fixos e erros-padrão de Driscoll-Kraay. Esses erros são robustos à dependência temporal e à dependência transversal entre estados. Nas estimações, utiliza-se largura de banda \(L=2\), permitindo correlação temporal de até dois anos nos resíduos. A comparação entre essas abordagens é útil porque envolve um trade-off: o LSDVC corrige melhor o viés dinâmico, enquanto o modelo com efeitos fixos de ano e Driscoll-Kraay controla de forma mais explícita choques macroeconômicos comuns.
-
-É importante destacar que os coeficientes do Modelo I e do Modelo II não possuem a mesma interpretação. No Modelo I, \(\beta_1\) mede a reação do resultado primário à dívida, enquanto no Modelo II, \(\rho\) mede a persistência da própria dívida. Assim, diferenças de magnitude entre esses coeficientes não indicam inconsistência entre os modelos, mas refletem o fato de que eles respondem a perguntas distintas.
-
-\section{Testes auxiliares e robustez}
-\label{sec:robustez}
-
-Além das especificações principais, o trabalho realiza testes auxiliares e exercícios de robustez. Em primeiro lugar, são avaliadas as propriedades de persistência das séries fiscais, incluindo testes de raiz unitária em painel para a razão DCL/RCL. Esses testes não substituem a abordagem de Bohn, mas ajudam a caracterizar a elevada persistência da dívida estadual e a verificar se os resultados são compatíveis com uma dinâmica não explosiva.
-
-No Modelo I, são estimadas especificações alternativas excluindo o período da pandemia de COVID-19, dado o caráter excepcional dos choques fiscais e macroeconômicos observados em 2020 e 2021. Também é testada uma especificação com interação adicional envolvendo o indicador \(binding_{it}\), com o objetivo de avaliar se o efeito do teto contratual é diferente quando o estado se encontra próximo ao limite de comprometimento da receita.
-
-A especificação complementar com \(binding_{it}\) é dada por:
-
-\begin{equation}
-s_{it}
-=
-\alpha_i
-+
-\lambda_t
-+
-\beta_1 d_{i,t-1}
-+
-\beta_2 \left(d_{i,t-1} \times teto_i\right)
-+
-\beta_3 \left(d_{i,t-1} \times teto_i \times binding_{it}\right)
-+
-\gamma yvar_{it}
-+
-\varepsilon_{it}.
-\label{eq:modelo1_binding}
-\end{equation}
-
-Essa especificação permite avaliar se a proximidade efetiva ao limite contratual altera adicionalmente a relação entre dívida, teto e resultado primário. Como o indicador \(binding_{it}\) depende de uma medida contemporânea de encargos e de um limiar convencional, seus resultados são tratados como evidência complementar de mecanismo, e não como especificação principal.
-
-Outra dimensão de robustez diz respeito à própria mensuração do teto contratual. Como alguns contratos estabeleceram faixas de comprometimento, são comparadas especificações com limite superior e limite inferior. O limite superior é mantido como medida principal por representar a permissividade máxima prevista no contrato e por oferecer uma medida mais estável e comparável entre estados.\footnote{Também foi testada uma especificação com os limites inferiores dos contratos. Os resultados foram instáveis, com forte redução do coeficiente da dívida e perda de significância da interação dívida \(\times\) teto. Essa instabilidade sugere que os limites inferiores não são diretamente comparáveis entre estados, pois podem refletir condições iniciais ou regras de transição específicas. Por isso, a especificação principal utiliza o limite superior como medida comparável da permissividade máxima contratual.} Adicionalmente, são realizados testes excluindo estados com contratos de prazo diferenciado, como Piauí e Ceará, de modo a verificar se os resultados principais são conduzidos por casos específicos.\footnote{A exclusão de Piauí e Ceará, cujos contratos apresentavam prazo de 15 anos, preserva praticamente inalterados os coeficientes principais. Esse exercício sugere que os resultados não são conduzidos por esses casos específicos.}
-
-No Modelo II, são avaliadas especificações adicionais com controles macroeconômicos e fiscais, como inflação e encargos da dívida. A inclusão dessas variáveis tem caráter exploratório, pois algumas delas apresentam limitações relevantes. O IPCA, por exemplo, é uma variável nacional sem variação transversal entre estados, enquanto os encargos sobre RCL podem estar mecanicamente relacionados ao próprio estoque da dívida. Assim, esses testes são interpretados como exercícios de sensibilidade, e não como substitutos da especificação principal.
-
-Também são estimadas especificações com efeitos fixos e erros-padrão de Driscoll-Kraay, com largura de banda \(L=2\), permitindo correlação temporal de até dois anos nos resíduos. Essa abordagem permite controlar choques comuns e dependência transversal entre estados, funcionando como comparação ao LSDVC. Adicionalmente, estima-se o Modelo II por Diff-GMM, seguindo a abordagem de \citeonline{arellano1991}, com instrumentos colapsados. Esse exercício oferece uma verificação adicional de consistência dos coeficientes obtidos pelo LSDVC, embora seja interpretado com cautela em razão da elevada persistência das séries fiscais.
-
-\section{Limitações metodológicas}
-\label{sec:limitacoes_metodologia}
-
-A estratégia empírica possui limitações que devem ser explicitadas. Em primeiro lugar, embora a estimação por 2SLS mitigue a simultaneidade entre dívida e resultado primário, a restrição de exclusão dos instrumentos não é diretamente testável. Em segundo lugar, os tetos contratuais foram negociados em um contexto histórico específico, no qual estados com diferentes níveis iniciais de endividamento podem ter recebido condições contratuais distintas. Os efeitos fixos de estado ajudam a controlar características permanentes das unidades federativas, mas não eliminam completamente a possibilidade de correlação entre o teto e trajetórias fiscais específicas ao longo do tempo.
-
-Em terceiro lugar, o uso do limite superior como medida do teto contratual é uma escolha metodológica necessária para garantir comparabilidade, mas não captura necessariamente a restrição efetiva enfrentada por cada estado em todos os anos. Por isso, os resultados associados ao teto devem ser interpretados como evidência sobre o desenho formal e a permissividade máxima dos contratos, e não como medida direta da pressão fiscal efetiva em cada período.
-
-Por fim, o Modelo II enfrenta os desafios típicos de painéis dinâmicos com pequeno número de unidades e séries fiscais persistentes. O uso de LSDVC busca corrigir o viés dinâmico, enquanto as especificações com efeitos fixos e Driscoll-Kraay oferecem uma comparação robusta sob controle mais explícito de choques comuns. Ainda assim, os coeficientes devem ser interpretados como associações estruturais condicionadas, e não como efeitos causais puros.
+Por fim, é realizado um exercício de robustez que introduz uma tripla interação $d_{i,t-1} \times teto_i \times binding_{i,t-1}$, onde $binding_{i,t-1} = 1$ se a razão entre encargos e RCL no ano anterior ultrapassar o limiar prudencial de 70\% do teto contratual,\footnote{O limiar de 70\% foi adotado como critério ilustrativo para diferenciar estados operando próximos do limite de comprometimento da RCL daqueles com folga substancial, sem corresponder a um parâmetro formalmente estabelecido em norma ou contrato.} investigando se o efeito moderador do teto é mais forte quando o estado já operava próximo do limite no período anterior. A defasagem de $binding_{i,t-1}$ preserva a predeterminação de todos os componentes da interação em relação ao erro contemporâneo, e o termo é instrumentado por $d_{i,t-2} \times teto_i \times binding_{i,t-2}$, seguindo a mesma lógica de identificação do modelo principal.

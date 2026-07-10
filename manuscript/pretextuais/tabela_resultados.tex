@@ -1,0 +1,42 @@
+\vspace{14pt}
+
+\begin{table}[H]
+\centering
+\caption{Função de reação fiscal --- painel de estados brasileiros (2002--2023)}
+\label{tab:resultados}
+\footnotesize
+\renewcommand{\arraystretch}{1.0}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lccc}
+\toprule
+ & \multicolumn{2}{c}{Especificação principal} & Robustez \\
+\cmidrule(l){2-3} \cmidrule(l){4-4}
+ & \textbf{(I-A)} & \textbf{(I-B)} & \textbf{(I-C)} \\
+ & MQO-EF & 2SLS & 2SLS \\
+\midrule
+DCL/RCL ($t-1$) & $0,317^{***}$ & $0,644^{***}$ & $0,611^{***}$ \\
+\color{gray!75} & \color{gray!75}(0,111) & \color{gray!75}(0,169) & \color{gray!75}(0,191) \\[3pt]
+DCL/RCL ($t-1$) $\times$ Teto & $-0,020^{**}$ & $-0,041^{***}$ & $-0,039^{***}$ \\
+\color{gray!75} & \color{gray!75}(0,008) & \color{gray!75}(0,012) & \color{gray!75}(0,013) \\[3pt]
+DCL/RCL ($t-1$) $\times$ Teto $\times$ Binding ($t-1$) & --- & --- & $0,001$ \\
+\color{gray!75} & & & \color{gray!75}(0,001) \\[3pt]
+Hiato do produto & $-0,084$ & $-0,009$ & $-0,011$ \\
+\color{gray!75} & \color{gray!75}(0,081) & \color{gray!75}(0,092) & \color{gray!75}(0,090) \\
+\midrule
+\textcolor{gray!70}{\textit{Observações}} & 525 & 500 & 500 \\
+\textcolor{gray!70}{\textit{$R^2$ within}} & 0,053 & --- & --- \\
+\textcolor{gray!70}{\textit{F-stat 1º estágio}} & --- & 972 / 1130 & 650 / 757 / 61 \\
+\textcolor{gray!70}{\textit{Wu--Hausman ($p$)}} & --- & 0,0001 & 0,0002 \\
+\bottomrule
+\end{tabular}
+
+\vspace{6pt}
+\begin{adjustwidth}{1.5cm}{1.5cm}
+\footnotesize
+\noindent
+Fonte: Elaboração própria a partir dos resultados da estimação. Erros-padrão clusterizados por estado entre parênteses. $^{*}p < 0{,}10$; $^{**}p < 0{,}05$; $^{***}p < 0{,}01$.
+\end{adjustwidth}
+
+\end{table}
+
+\vspace{14pt}

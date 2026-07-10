@@ -18,29 +18,51 @@
 \usepackage{float}
 \usepackage{amsmath}
 \usepackage{amssymb}
-\usepackage[alf]{abntex2cite}
+\usepackage[alf, lower]{abntex2cite}
+% --- PATCH CORRIGIDO (Funciona com qualquer versão) ---
+\makeatletter
+% O comando \@firstofone apenas devolve o argumento sem modificá-lo
+% Vamos forçar as duas possíveis grafias a serem "sem maiúsculo"
+\let\ABNTEXcitepartiauthorlastname\@firstofone
+\let\ABNTEXcitepartidauthorlastname\@firstofone
+\makeatother
+% --------------------------------------------------------
 \usepackage{babel}
+\usepackage{indentfirst}
+\usepackage{xcolor}
+\usepackage{threeparttable}
+
+
+
+% ----------------------------------------------------------
+% Remove cores dos links (hyperref carregado pelo abntex2)
+% ----------------------------------------------------------
+\hypersetup{
+  colorlinks=true,
+  linkcolor=black,
+  citecolor=black,
+  urlcolor=black
+}
+
 
 % ----------------------------------------------------------
 % Informações do trabalho
 % ----------------------------------------------------------
-\titulo{Regras fiscais e seus impactos sobre a dívida dos estados brasileiros}
+\titulo{Reação fiscal e heterogeneidade contratual: a sustentabilidade da dívida dos estados brasileiros}
 \autor{Pedro Leite Tunholi}
 \local{Brasília}
 \data{2026}
 
-\instituicao{%
-  Universidade de Brasília
-  \par
-  Faculdade de Administração, Contabilidade, Economia e Gestão de Políticas Públicas
-  \par
-  Departamento de Ciências Econômicas
-}
 
-\orientador{Vander Mendes Lucas}
+\preambulo{Trabalho de Conclusão de Curso apresentado
+ao Departamento de Ciências Econômicas da
+Universidade de Brasília como requisito parcial
+para obtenção do grau de Bacharel em
+Ciências Econômicas.
 
-\preambulo{Trabalho de Conclusão de Curso apresentado ao Departamento de Ciências Econômicas da Universidade de Brasília como requisito parcial para obtenção do grau de Bacharel em Ciências Econômicas.}
+\vspace{0.8cm}
 
+Orientador: Prof. Dr. Vander Mendes Lucas}
 % ----------------------------------------------------------
 % Capa personalizada
 % ----------------------------------------------------------
@@ -79,6 +101,18 @@
 
 \end{capa}
 }
+
+\usepackage{caption}
+\captionsetup[table]{position=above, labelsep=endash, justification=centering, singlelinecheck=false, font=small, labelfont=bf}
+
+\makeatletter
+\renewcommand{\fonte}[1]{%
+  \par\vspace{0.5\baselineskip}%
+  \noindent{\footnotesize Fonte: #1}%
+}
+\makeatother
+
+
 
 % ----------------------------------------------------------
 % Início do documento
@@ -126,6 +160,7 @@
 % ----------------------------------------------------------
 \postextual
 
+\renewcommand{\bibname}{Referências bibliográficas}
 \bibliography{referencias}
 
 \end{document}

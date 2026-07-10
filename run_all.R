@@ -42,6 +42,7 @@ source("scripts/04_model2_lsdvc.R")
 cat("\n[5/9] Verificações de robustez + testes de raiz unitária...\n")
 source("scripts/05_robustness.R")
 source("scripts/05b_robustness_binding.R")
+source("scripts/05c_robustness_dummy_teto.R")
 
 cat("\n[6/9] Gerando tabela de resultados...\n")
 source("scripts/06_tables.R")

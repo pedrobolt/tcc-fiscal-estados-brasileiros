@@ -33,3 +33,8 @@ data/raw/ibge/*.rds
 .RData
 .DS_Store
 Thumbs.db
+Rplots.pdf
+
+# Backups de iteração
+*backup*
+*_v2.csv

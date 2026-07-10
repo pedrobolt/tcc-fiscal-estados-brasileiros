@@ -1,4 +1,63 @@
-\chapter{Resultados}
+\chapter{Resultados e discussão}
 \label{chap:resultados}
 
-Texto provisório.
+\section{Estimativa da função de reação fiscal}
+
+Com o objetivo de avaliar a sustentabilidade da dívida dos entes federativos brasileiros, foi estimada uma função de reação fiscal recorrendo ao Estimador de Mínimos Quadrados de Dois Estágios (2SLS), dada a possibilidade de viés decorrente de endogeneidade. Na \autoref{tab:resultados}, encontram-se os resultados da estimação via MQO e 2SLS com efeitos fixos bidirecionais.
+
+\input{pretextuais/tabela_resultados.tex}
+
+Comparando as colunas (I-A) e (I-B), obtemos uma estimativa do tamanho do viés de endogeneidade. Pelo MQO, temos $\hat{\beta}_1 = 0{,}317$ e $\hat{\beta}_2 = -0{,}020$, aproximadamente a metade do que se encontra nas estimativas por 2SLS. Esse padrão segue exatamente o que era previsto teoricamente: quando estados enfrentam deterioração no resultado primário, tendem a acumular mais dívida, reduzindo assim o coeficiente obtido via MQO. A divergência consistente entre os dois métodos deixa claro por que a estratégia instrumental se faz necessária.
+
+Quanto ao 2SLS, o coeficiente $\hat{\beta}_1$ é positivo e significativo ($\hat{\beta}_1 = 0{,}644$; $p < 0{,}01$), sugerindo que os estados brasileiros elevam o resultado primário quando o endividamento sobe. Isso atende à condição de sustentabilidade colocada por \citeonline{bohn1998}: na média dos dados, um aumento de um ponto percentual na razão DCL/RCL no período anterior corresponde a um incremento aproximado de 0,64 ponto percentual no primário sobre RCL.
+
+O coeficiente $\hat{\beta}_2$ é negativo e significativo ($\hat{\beta}_2 = -0{,}041$; $p < 0{,}01$), consistente com a hipótese de que o teto contratual condiciona o tamanho da reação fiscal. O resultado sugere que estados com tetos menos rigorosos reduzem menos o déficit quando enfrentam níveis semelhantes de endividamento. A reação fiscal resultante, expressa por $\hat{\beta}_1 + \hat{\beta}_2 \times teto_i$, é testada nos três valores de teto observados na amostra:
+
+\vspace{0.8cm}
+\begin{table}[H]
+\centering
+\caption{Reação fiscal líquida por teto contratual}
+\label{tab:reacao_liquida}
+\begin{tabular}{lcc}
+\toprule
+Teto contratual & Reação líquida & Estados \\
+\midrule
+12\% & $0{,}644 + (-0{,}041 \times 12) \approx 0{,}154$~p.p.\textsuperscript{***}
+     & AC, AM, CE, PE, RR \\
+13\% & $0{,}644 + (-0{,}041 \times 13) \approx 0{,}113$~p.p.\textsuperscript{***}
+     & 14 entes (maioria) \\
+15\% & $0{,}644 + (-0{,}041 \times 15) \approx 0{,}029$~p.p.\textsuperscript{*}
+     & AL, GO, MS, MT, PA, RO \\
+\bottomrule
+\end{tabular}
+\fonte{Elaboração própria a partir dos resultados da estimação.
+Reação líquida calculada como $\hat{\beta}_1 + \hat{\beta}_2 
+\times \mathrm{teto}_i$, com base no Modelo~I-B (2SLS\@).
+\textsuperscript{*}$p < 0{,}10$;
+\textsuperscript{***}$p < 0{,}01$.}
+\end{table}
+\vspace{0.8cm}
+
+
+A reação fiscal líquida é positiva e estatisticamente significativa para os estados com teto de 12\% e 13\% ($p < 0{,}001$). Para o grupo com teto de 15\%, a reação estimada é positiva porém apenas marginalmente significativa ($p = 0{,}09$), reflexo tanto da proximidade do efeito a zero quanto da heterogeneidade interna do grupo, que reúne estados com perfis de endividamento distintos, como AL e GO (DCL/RCL médio acima de 120\%) e PA e RO (abaixo de 60\%).\footnote{A significância do grupo teto=15\% é sensível à composição do grupo: excluindo AL, o $p$-valor sobe para 0,30, o que reflete a reduzida dimensão amostral desse grupo (seis estados) mais do que uma fragilidade sistemática do resultado --- os coeficientes $\hat{\beta}_1$ e $\hat{\beta}_2$, que sustentam a conclusão principal, permanecem estáveis nesse mesmo exercício.} A magnitude do ajuste cai substancialmente conforme aumenta a flexibilidade do contrato: estados com teto de 15\% ajustam cerca de cinco vezes menos do que estados com teto de 12\%.
+
+O hiato do produto ($yvar_{it}$) não aparece como estatisticamente significativo, algo esperado ao usar efeitos fixos de ano. O sinal negativo estimado, embora não significativo, é compatível com um padrão de comportamento fiscal em que a resposta do resultado primário ao ciclo econômico não é simétrica entre expansões e recessões, um padrão já discutido na literatura de política fiscal subnacional brasileira \cite{moraFederalismoEndividamentoSubnacional2007}. A magnitude do coeficiente, contudo, é pequena e sensível à inclusão dos efeitos fixos de ano, que absorvem a maior parte da variação cíclica comum aos estados.
+
+Três diagnósticos sustentam a validade dos instrumentos utilizados. O teste de Wu-Hausman rejeita a ideia de que a dívida defasada seria exógena ($p < 0{,}001$), justificando a preferência por 2SLS em lugar de MQO. As estatísticas F da primeira etapa são elevadas para ambas as variáveis endógenas ($F = 972$ para $d_{i,t-1}$ e $F = 1130$ para $d_{i,t-1} \times teto_i$), bem acima do que recomendam \citeonline{stockTestingWeakInstruments2004}. Além disso, o contraste com os resultados do MQO já discutido mostra diferenças expressivas nos coeficientes, deixando evidente que o viés causado por endogeneidade era relevante na estimação por MQO.
+
+Como forma complementar de testar a robustez desses resultados, foi realizada uma interação tripla $d_{i,t-1} \times teto_i \times binding_{i,t-1}$, onde $binding_{i,t-1} = 1$ quando o quociente encargos/RCL do ano anterior chegou a 70\% ou mais do teto contratual. Assim, verifica-se se o teto funciona mais fortemente como moderador quando o estado já estava operando próximo do limite no período anterior.
+
+O coeficiente da tripla interação mostrou-se não significativo ($\hat{\beta}_3 = 0{,}001$; $p = 0{,}41$), ao passo que $\hat{\beta}_1$ e $\hat{\beta}_2$ permanecem próximos dos encontrados antes ($\hat{\beta}_1 = 0{,}611$; $\hat{\beta}_2 = -0{,}039$). A estatística F do primeiro estágio referente à endógena adicional atingiu 61, situando-se acima do patamar usual. O papel moderador do teto parece estar associado ao seu desenho contratual em si, e não à proximidade de violação do limite.
+
+Cabe ressalvar, porém, que apenas 23 das 500 observações da amostra apresentam $binding_{i,t-1} = 1$, concentradas principalmente em RJ, RS e MG, com ocorrências isoladas em outros estados, predominantemente durante 2003--2005 e 2020--2023.\footnote{Esses dois períodos correspondem, respectivamente, ao ajuste que sucedeu a Lei n\textsuperscript{o}~9.496/1997 e ao período de estresse fiscal associado à pandemia de COVID-19.} Assim, o teste tem menos capacidade estatística de detectar diferenças entre grupos, mesmo que elas realmente existam.
+
+Os resultados devem ser lidos com cautela, tendo em vista algumas limitações da estratégia empírica. A restrição de exclusão dos instrumentos, a dívida em $t-2$ afetar o primário em $t$ apenas pelo canal do endividamento corrente, não é diretamente testável; dado que a política fiscal é persistente, choques em $t-2$ podem ter efeitos diretos sobre o resultado em $t$, constituindo violação potencial. O teto contratual é invariante no tempo e, portanto, não pode ser incluído como regressor isolado na presença de efeitos fixos de estado --- toda a identificação de $\hat{\beta}_2$ depende da variação temporal de $d_{i,t-1}$ interagida com a variação cross-sectional do teto, o que impede distinguir o efeito do teto do de qualquer outra característica estadual invariante que lhe seja proporcional. Essa limitação implica que $\hat{\beta}_2$ deve ser interpretado com cautela: o coeficiente pode refletir não apenas o efeito do desenho contratual em si, mas também trajetórias fiscais diferenciadas entre estados que negociaram tetos distintos em 1997, associadas a características estruturais não capturadas pelos efeitos fixos. Por fim, as renegociações dos contratos a partir de 2014 podem ter alterado a percepção dos gestores sobre o caráter vinculante dos tetos, de modo que a heterogeneidade formal nos contratos pode subestimar a heterogeneidade real dos incentivos ao ajuste fiscal ao longo do período amostral.
+
+\section{Comparação com a literatura}
+\label{sec:comparacao}
+
+Os achados desta pesquisa coincidem parcialmente com os de \citeonline{abubakarDebtReliefFiscal2025}, que estudam uma reação fiscal similar em 37 países da África Subsaariana. Ambos os trabalhos verificam $\hat{\beta}_1 > 0$ (ajuste fiscal positivo ante endividamento crescente) e $\hat{\beta}_2 < 0$ (regras fiscais reduzem a força do ajuste), com valores aproximados para $\hat{\beta}_2$ ($-0{,}031$ a $-0{,}071$ naquele estudo contra $-0{,}041$ aqui).
+
+O ponto de discordância está no resultado final. No trabalho de \citeonline{abubakarDebtReliefFiscal2025}, $|\hat{\beta}_2|$ é maior que $\hat{\beta}_1$, tornando a reação fiscal líquida negativa para países com regras --- resultado interpretado pelos autores como sinal de que as regras podem prejudicar a sustentabilidade na SSA. No Brasil, a reação líquida continua positiva para os dois primeiros grupos de teto e marginalmente positiva para o grupo mais permissivo, o que sugere que tetos mais flexíveis atenuam o ajuste sem invertê-lo.
+
+Pode-se identificar três fatores institucionais que ajudam a entender essa disparidade. Em primeiro lugar, a União brasileira funciona como credora direta dos estados, dispondo de mecanismos de enforcement contratual que simplesmente não existem quando se trata da relação entre organizações multilaterais e países soberanos da SSA. Em segundo lugar, a Lei de Responsabilidade Fiscal estabelece sanções domésticas para o não cumprimento de metas fiscais, enquanto os países da SSA enfrentam principalmente pressões originadas de fatores externos (FMI, Banco Mundial). Um terceiro aspecto reside na diferença estrutural entre os dois estudos: em \citeonline{abubakarDebtReliefFiscal2025}, a variável institucional é uma dummy binária que distingue países com e sem regras fiscais, captando o impacto da adoção; já a variável empregada neste trabalho é de natureza contínua e examina o grau de rigor da regra dentro de um conjunto de estados que se encontram todos sob o mesmo marco regulatório da LRF e da Lei n\textsuperscript{o}~9.496/1997. O coeficiente $\hat{\beta}_2$ representa, portanto, o efeito marginal da flexibilidade contratual, não meramente o efeito de haver uma regra.

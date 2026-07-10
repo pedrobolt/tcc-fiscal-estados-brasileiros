@@ -1,0 +1,29 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+caption={ROB4: Funcao de Reacao Fiscal --- Teto Continuo vs Binario},
+note{}={* p \num{< 0.1}, ** p \num{< 0.05}, *** p \num{< 0.01}},
+note{ }={Erros padrao clusterizados por estado. Efeitos fixos de estado e ano. 2SLS (fixest::feols).},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]},
+hline{2}={1-3}{solid, black, 0.05em},
+hline{10}={1-3}{solid, black, 0.05em},
+hline{1}={1-3}{solid, black, 0.08em},
+hline{12}={1-3}{solid, black, 0.08em},
+column{2-3}={}{halign=c},
+column{1}={}{halign=l},
+}                     %% tabularray inner close
+& Modelo A (teto continuo) & Modelo B (dummy >= 15\%) \\
+DCL/RCL defasada (beta1) & \num{0.653}*** & \num{0.111}*** \\
+& (\num{0.170}) & (\num{0.025}) \\
+DCL/RCL x Teto continuo (beta2) & \num{-0.041}*** &  \\
+& (\num{0.012}) &  \\
+DCL/RCL x Dummy teto alto (beta2) &  & \num{-0.073}*** \\
+&  & (\num{0.025}) \\
+Hiato do produto & \num{0.003} & \num{-0.003} \\
+& (\num{0.092}) & (\num{0.092}) \\
+Observacoes & \num{487} & \num{487} \\
+R2 & \num{0.556} & \num{0.548} \\
+\end{talltblr}
+\end{table}
