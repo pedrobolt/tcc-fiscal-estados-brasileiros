@@ -1,5 +1,5 @@
 # Sustentabilidade Fiscal e Regras de Endividamento
-### Painel de Estados Brasileiros (2002–2024)
+### Painel de Estados Brasileiros (2002–2023)
 
 Replicação adaptada de **Abubakar, McCausland & Theodossiou (2025)**
 para o contexto das finanças estaduais brasileiras.
@@ -15,7 +15,7 @@ Metodologia completa: [`docs/metodologia_tcc_v9.pdf`](docs/metodologia_tcc_v9.pd
 ## Sobre o projeto
 
 Este trabalho aplica o framework de sustentabilidade fiscal de Bohn (1998)
-a um painel de 25 estados brasileiros (2002–2024), investigando:
+a um painel de 25 estados brasileiros (2002–2023), investigando:
 
 1. Se a dívida pública estadual é sustentável (Modelo I)
 2. Quais fatores determinam a trajetória da dívida (Modelo II)
@@ -30,12 +30,26 @@ exógena na intensidade da restrição fiscal.
 
 ## Resultados principais
 
+**Modelo I — 2SLS (N=500, 25 estados × 2004–2023)**
+
+| Coeficiente | Valor | SE | Interpretação |
+|---|---|---|---|
+| β₁ (DCL/RCL) | +0.644*** | (0.169) | Condição de Bohn satisfeita — dívida é sustentável |
+| β₂ (DCL×Teto) | −0.041*** | (0.012) | Teto mais alto atenua o ajuste fiscal |
+| F 1º estágio | 972 / 1130 | — | Instrumentos fortes |
+| Wu-Hausman p | 0.0001 | — | Endogeneidade confirmada |
+
+**Reação fiscal líquida por grupo de teto:**
+- Teto 12%: β₁ + β₂×12 = +0.154*** — ajuste forte
+- Teto 13%: β₁ + β₂×13 = +0.113*** — ajuste moderado
+- Teto 15%: β₁ + β₂×15 = +0.029\* — ajuste quase nulo
+
+**Modelo II — LSDVC (N=525)**
+
 | Coeficiente | Valor | Interpretação |
 |---|---|---|
-| β₁ (DCL/RCL, 2SLS) | +0.653*** | Condição de Bohn satisfeita — dívida é sustentável |
-| β₂ (DCL×Teto, 2SLS) | −0.041*** | Teto mais alto atenua o ajuste fiscal |
-| θ (Primário/RCL, LSDVC) | −0.933*** | Superávit reduz dívida em ~0.93pp por 1pp |
-| ρ (DCL lag, LSDVC) | +0.984*** | Alta persistência da dívida estadual |
+| θ (Primário/RCL) | −0.927*** | Superávit reduz dívida em ~0.93pp por 1pp |
+| ρ (DCL lag) | +0.981*** | Alta persistência da dívida estadual |
 
 Todos os resultados são robustos à exclusão do período COVID (2020–2021)
 e à substituição do crescimento do PIB pelo hiato do produto.
@@ -78,7 +92,10 @@ tcc/
 │       └── fig6_event_study.{pdf,png}
 ├── docs/
 │   └── metodologia_tcc_v9.pdf        # Metodologia completa
-├── run_all.R                         # Pipeline completo (9 etapas)
+├── manuscript/
+│   ├── main.tex / main.pdf           # Documento LaTeX e PDF final
+│   └── apresentacao_defesa_tcc.pdf   # Slides da defesa
+├── run_all.R                         # (alternativo: roda as 9 etapas em sequência — não recomendado para primeira execução)
 └── README.md
 ```
 
@@ -126,7 +143,7 @@ testes t de Welch entre grupos, (C) matriz de correlação das variáveis do mod
 **Figuras 5–6 — Análise de pré-tendência** (`scripts/09_pre_trend.R`)
 
 - Figura 5: DCL/RCL média por grupo de teto com bandas de confiança (2002–2008)
-- Figura 6: Event study completo (2002–2024), interação `year × teto`, referência em 2002
+- Figura 6: Event study completo (2002–2023), interação `year × teto`, referência em 2002
 
 A identificação 2SLS baseia-se em variação cross-sectional do teto (fixo desde 1997),
 não em variação temporal. O teste de pré-tendência é evidência adicional de comparabilidade

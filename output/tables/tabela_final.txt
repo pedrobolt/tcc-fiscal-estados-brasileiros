@@ -1,50 +1,51 @@
 TABELA: Sustentabilidade Fiscal e Regras de Endividamento (6 colunas)
 Painel de Estados Brasileiros (2002-2024)
-========================================================================================
+===================================================================================================
                                 I-A: MQO-EF I-B: 2SLS II-A: LSDVC II-B: EF+DK
-                  DCL/RCL (t-1)    0.324***  0.653***    0.984***    0.864***
-                                    (0.111)   (0.170)     (0.018)     (0.031)
-           DCL/RCL (t-1) × Teto    -0.021** -0.041***
-                                    (0.008)   (0.012)
- DCL/RCL (t-1) × Teto × Binding
-
-               Hiato do produto      -0.075     0.003
-                                    (0.082)   (0.092)
-                   Primário/RCL                         -0.933***   -0.744***
-                                                          (0.101)     (0.128)
+                  DCL/RCL (t-1)    0.317***  0.644***    0.981***    0.865***
+                                    (0.111)   (0.169)     (0.018)     (0.029)
+           DCL/RCL (t-1) × Teto    -0.020** -0.041***                        
+                                    (0.008)   (0.012)                        
+ DCL/RCL (t-1) × Teto × Binding                                              
+                                                                             
+               Hiato do produto      -0.084    -0.009                        
+                                    (0.081)   (0.091)                        
+                   Primário/RCL                         -0.927***   -0.735***
+                                                          (0.100)     (0.123)
             Crescimento PIB (%)                          -0.003**    -0.003**
                                                           (0.001)     (0.001)
-                           Obs.         512       487         513         512
-                      R² within       0.055         —           —       0.824
-              F-stat 1º estágio           —  918/1070           —           —
+                           Obs.         525       500         525         525
+                      R² within       0.053         —           —       0.828
+              F-stat 1º estágio           —  972/1130           —           —
                  Wu-Hausman (p)           —    0.0001           —           —
                 Bootstrap B=500           —         —         Sim           —
                Correção Nickell           —         —         Sim           —
                       EF Estado         Sim       Sim         Sim         Sim
                          EF Ano         Sim       Sim         Não         Sim
  Rob1: LSDVC-yvar Rob3: Binding
-         0.964***      0.670***
-          (0.023)       (0.170)
+         0.961***      0.659***
+          (0.023)       (0.171)
                       -0.042***
                         (0.012)
-                        -0.0005
+                        -0.0004
                        (0.0004)
-           -0.170         0.004
-          (0.139)       (0.093)
-        -0.934***
-          (0.132)
-
-
-              537           487
+           -0.171        -0.009
+          (0.138)       (0.092)
+        -0.929***              
+          (0.130)              
+                               
+                               
+              550           500
                 —             —
-                —  611/712/4588
-                —        0.0002
+                —  647/752/4714
+                —        0.0003
               Sim             —
               Sim             —
               Sim           Sim
               Não           Sim
 
-Erros padrão clusterizados por estado entre parênteses (Modelos I e Rob). Bootstrap com B=500 replicações
-(Modelos II LSDVC). System-GMM two-way FE inviável com N=25 — substituído por LSDVC (Bruno, 2005). Rob3:
-binding=1 se encargos/(teto/100)>0,70; inclui tripla interacao d×teto×binding. Amostra: 25 estados brasileiros
-(excl. AP e TO), 2002–2024. * p<0,1 ** p<0,05 *** p<0,01.
+Erros padrão clusterizados por estado entre parênteses (Modelos I e Rob). Bootstrap com B=500
+replicações (Modelos II LSDVC). System-GMM two-way FE inviável com N=25 — substituído por LSDVC
+(Bruno, 2005). Rob3: binding=1 se encargos/(teto/100)>0,70; inclui tripla interacao
+d×teto×binding. Amostra: 25 estados brasileiros (excl. AP e TO), 2002–2024. * p<0,1 ** p<0,05 ***
+p<0,01.
